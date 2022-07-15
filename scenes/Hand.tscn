@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://materials/Hand.tres" type="Material" id=1]
-[ext_resource path="res://Hand.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Hand.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=8]
 length = 0.001
@@ -117,6 +117,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector3( 0, 0, 0 ), Vector3( 10.446, 0, 0 ), Vector3( -6.361, 0, 0 ) ]
 }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "end_throw"
+} ]
+}
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 1.6, 0.298, 2 )
@@ -140,7 +154,6 @@ size = Vector3( 0.943, 0.653, 2.826 )
 extents = Vector3( 1, 0.214314, 1.86503 )
 
 [node name="Hand" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -148,10 +161,9 @@ anims/RESET = SubResource( 8 )
 anims/throw = SubResource( 9 )
 
 [node name="meshes" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="palm" type="MeshInstance" parent="meshes"]
-transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 2.98024e-08, 0, -2.98024e-08, 1, 0, 0, 0 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")
 material/0 = ExtResource( 1 )
