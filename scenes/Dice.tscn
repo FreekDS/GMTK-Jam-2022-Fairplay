@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/Dice.gd" type="Script" id=1]
+
+[sub_resource type="PhysicsMaterial" id=8]
 
 [sub_resource type="SpatialMaterial" id=1]
 resource_name = "Material.003"
@@ -24,6 +26,9 @@ surfaces/0 = {
 "vertex_count": 8739
 }
 
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0, 0, 0, 1 )
+
 [sub_resource type="SpatialMaterial" id=3]
 resource_name = "Material.005"
 vertex_color_use_as_albedo = true
@@ -46,10 +51,16 @@ surfaces/0 = {
 "vertex_count": 4791
 }
 
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.996078, 1, 0.992157, 1 )
+
 [sub_resource type="BoxShape" id=5]
 
 [node name="Dice" type="RigidBody"]
+physics_material_override = SubResource( 8 )
+axis_lock_angular_y = true
 script = ExtResource( 1 )
+torque_power = 10.0
 
 [node name="Model" type="Spatial" parent="."]
 transform = Transform( 0.2, 0, 0, 0, -8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0, 0, 0 )
@@ -63,11 +74,11 @@ transform = Transform( 1, 0, 0, 0, 2.22045e-16, -1, 0, 1, 2.22045e-16, 0, 0, 0 )
 
 [node name="Object_4" type="MeshInstance" parent="Model/root/GLTF_SceneRootNode/Cube_0"]
 mesh = SubResource( 2 )
-material/0 = null
+material/0 = SubResource( 6 )
 
 [node name="Object_5" type="MeshInstance" parent="Model/root/GLTF_SceneRootNode/Cube_0"]
 mesh = SubResource( 4 )
-material/0 = null
+material/0 = SubResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
