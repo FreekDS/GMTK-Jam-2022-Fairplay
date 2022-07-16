@@ -78,11 +78,11 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id=6]
 shader = SubResource( 5 )
-shader_param/CRT_STRENGTH = 0.5
-shader_param/CA_MAX_PIXEL_DIST = 2.0
+shader_param/CRT_STRENGTH = 1.0
+shader_param/CA_MAX_PIXEL_DIST = 0.1
 shader_param/BORDER_SIZE = 0.1
 shader_param/BORDER_STRENGTH = 0.3
-shader_param/SATURATION = 0.9
+shader_param/SATURATION = 1.0
 
 [node name="DiceCamEffect" type="Control"]
 visible = false
