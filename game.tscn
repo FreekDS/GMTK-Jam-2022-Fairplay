@@ -81,5 +81,6 @@ environment = ExtResource( 10 )
 [node name="trail" parent="." instance=ExtResource( 12 )]
 visible = false
 
+[connection signal="foefelen" from="Dice" to="." method="_on_Dice_foefelen"]
 [connection signal="thrown" from="Hand" to="StartCam" method="_on_Hand_thrown"]
 [connection signal="thrown" from="Hand" to="Dice" method="_on_Hand_thrown"]

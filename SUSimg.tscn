@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://img/su2.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
+
+
+export var shake_amount = .3
+export var shaking = false
+
+var orignal_pos
+
+func _ready():
+	orignal_pos = position
+
+
+func _process(delta):
+	if not shaking:
+		return
+	var newPos = orignal_pos
+	newPos.x += rand_range(-shake_amount, shake_amount)
+	newPos.y += rand_range(-shake_amount, shake_amount)
+	position = newPos
+
+
+
+"
+
+[node name="SusImg" type="Sprite"]
+position = Vector2( 38.75, 87.5 )
+scale = Vector2( 0.225309, 0.225309 )
+texture = ExtResource( 1 )
+script = SubResource( 1 )
+shake_amount = 1.0

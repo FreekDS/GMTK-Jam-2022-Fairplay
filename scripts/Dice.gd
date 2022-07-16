@@ -2,6 +2,9 @@ extends RigidBody
 
 #todo zet slowmo af voor landing voor bounciness te fixen
 
+signal foefelen(in_slowmotion)
+
+
 var mouse_down_start
 
 # Set by globals
@@ -53,7 +56,7 @@ signal second_bounce_hit()
 
 signal slow_motion_state_changed(is_slowmotion)
 var counter=0
-func _process(delta):
+func _process(_delta):
 	if(eenkant.is_colliding()):
 		current_top_number=3
 	if(tweekant.is_colliding()):
@@ -82,6 +85,8 @@ func _input(event):
 			var power = torque_power
 			if slow_motion:
 				power = slowmotion_torque_power
+			
+			emit_signal("foefelen", slow_motion)
 			
 			add_torque(Vector3(dir.y, 0, -dir.x) * power);
 		if event.is_action_pressed("slowmo"):

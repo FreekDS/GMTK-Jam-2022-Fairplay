@@ -1,6 +1,7 @@
 extends Control
 
 signal target_selected(target)
+signal max_sus
 signal restart_game()
 
 var selection
@@ -16,13 +17,18 @@ var game_save = null
 
 # Filled by globals
 var SUS_increment
+var SUS_increment_slowmotion
 
 func _ready():
 	
 	var g = preload("res://GAME_GLOBALS.tres") as GLOBALS
 	SUS_increment = g.sus_increment
+	SUS_increment_slowmotion = g.sus_incrment_slowmotion
+	SusMeter.connect("reached_max_sus", self, "handle_max_sus")
 
-
+func handle_max_sus():
+	emit_signal("max_sus")
+	# TODO: den thibaut gaat een schoon max sus scherm maken als hem klaar is :o
 		
 func start_select_random_dice_face():
 	if not selected:
@@ -40,8 +46,11 @@ func animation_ended():
 	emit_signal("target_selected", selection)
 	
 	
-func increase_sus():
-	SusMeter.add(SUS_increment)
+func increase_sus(slowmotion):
+	if slowmotion:
+		SusMeter.add(SUS_increment_slowmotion)
+	else:
+		SusMeter.add(SUS_increment)
 
 
 func start_vizual_end_timer(seconds:int):
