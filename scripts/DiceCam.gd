@@ -7,7 +7,7 @@ export(Vector3) var diceOffset = Vector3.ZERO
 func _ready():
 	translation = dice.translation + diceOffset
 	
-func _process(delta):
+func _process(_delta):
 	translation = dice.translation + diceOffset
 
 

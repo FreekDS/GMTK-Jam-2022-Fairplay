@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://mesh/table.gltf" type="PackedScene" id=1]
-[ext_resource path="res://materials/tabletop.tres" type="Material" id=2]
+[ext_resource path="res://mesh/Material.material" type="Material" id=2]
 [ext_resource path="res://materials/tablepoot.tres" type="Material" id=3]
 
 [node name="table" instance=ExtResource( 1 )]

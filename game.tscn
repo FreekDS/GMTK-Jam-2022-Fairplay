@@ -39,18 +39,18 @@ DiceCam = NodePath("../DiceCam")
 DiceCamEffect = NodePath("../DiceCamEffect")
 
 [node name="Table" parent="." groups=["table"] instance=ExtResource( 1 )]
-transform = Transform( -3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -18.4732, -4.931, 0 )
+transform = Transform( -3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -18.4732, -5.44771, 0 )
 
 [node name="Dice" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.12203, 1.7, -1.87075 )
 gravity_scale = 0.8
 
 [node name="DiceCam" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 0, 0 )
 far = 8192.0
 script = ExtResource( 5 )
 dice = NodePath("../Dice")
-diceOffset = Vector3( 0, 3, 1 )
+diceOffset = Vector3( 0, 3, 1.8 )
 
 [node name="Hand" parent="." instance=ExtResource( 2 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.5683, 0.581873, -1.76025 )
