@@ -7,6 +7,7 @@ signal reached_max_sus
 export(NodePath) onready var progress = get_node(progress) as TextureProgress
 
 var interpol_time
+var finished = false
 
 func _ready():
 	
@@ -25,3 +26,9 @@ func fill_to(value):
 
 func add(value):
 	fill_to(progress.value + value)
+	if progress.value + value > progress.max_value and not finished:
+		tween.connect("tween_all_completed", self, "end")
+		finished = true
+
+func end():
+	emit_signal("reached_max_sus")

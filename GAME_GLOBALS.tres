@@ -15,6 +15,6 @@ dice_bounce_base = 600.0
 dice_bounce_slowmotion_multiplier = 3.0
 slowmotion_fov = 50
 normal_fov = 90
-sus_increment = 20.0
+sus_increment = 1.0
 sus_incrment_slowmotion = 30.0
 sus_tween_fill_time = 0.5
