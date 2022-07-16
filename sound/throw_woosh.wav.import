@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/throw_woosh.wav-f9628655305aa15e907d2cc6d4e403d3.sample"
+
+[deps]
+
+source_file="res://sound/throw_woosh.wav"
+dest_files=[ "res://.import/throw_woosh.wav-f9628655305aa15e907d2cc6d4e403d3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

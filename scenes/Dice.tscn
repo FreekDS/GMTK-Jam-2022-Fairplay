@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/Dice.gd" type="Script" id=1]
-[ext_resource path="res://sound/dice_thud.wav" type="AudioStream" id=2]
+[ext_resource path="res://sound/dice_thud2.wav" type="AudioStream" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]
 resource_name = "Material.003"
@@ -82,7 +82,7 @@ mesh = SubResource( 4 )
 material/0 = SubResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.2, 8.88178e-16, 0, -8.88178e-16, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
+transform = Transform( 0.195, 8.65974e-16, 0, -8.65974e-16, 0.195, 0, 0, 0, 0.195, 0, 0, 0 )
 shape = SubResource( 5 )
 
 [node name="eenkant" type="RayCast" parent="."]
@@ -139,6 +139,5 @@ collide_with_bodies = false
 
 [node name="dice_thud_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-pitch_scale = 0.65
 
 [connection signal="body_entered" from="." to="." method="_on_Dice_body_entered"]
