@@ -8,7 +8,7 @@ export var torque_power = 6.0
 export var slowmotion_torque_power = 15.0
 
 
-const max_throw_power = 1000
+const max_throw_power = 950
 const min_throw_power = 300
 const throw_height = 100
 const torque_multiplier = 15
