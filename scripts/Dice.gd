@@ -12,6 +12,8 @@ onready var ray = $RayCast
 
 var slow_motion = false
 
+signal slow_motion_state_changed(is_slowmotion)
+
 func _process(delta):
 	ray.set_cast_to(linear_velocity.normalized())
 
@@ -26,7 +28,6 @@ func _input(event):
 	if event.is_action_released("mouse_down"):
 		var dir: Vector2 = get_viewport().get_mouse_position() - mouse_down_start
 		dir = dir.normalized()
-		
 		var power = torque_power
 		if slow_motion:
 			power = slowmotion_torque_power
@@ -35,9 +36,11 @@ func _input(event):
 	if event.is_action_pressed("slowmo"):
 		Engine.time_scale = .3
 		slow_motion = true
+		emit_signal("slow_motion_state_changed", true)
 	if event.is_action_released("slowmo"):
 		Engine.time_scale = 1
 		slow_motion = false
+		emit_signal("slow_motion_state_changed", false)
 
 
 func _on_Hand_thrown():
