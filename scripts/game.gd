@@ -2,6 +2,8 @@ extends Spatial
 
 var thrown = false
 
+var stop_game_timer = Timer.new()
+
 export(Environment) var normal_env = null
 export(Environment) var dof_env = null
 
@@ -13,6 +15,8 @@ onready var world_env=$WorldEnvironment
 
 func _ready():
 	dice.connect("slow_motion_state_changed",self,"change_to_slowmotion")
+	table.connect("second_bounce_hit",self,"stop_game_after_time")
+	stop_game_timer.connect("timeout",self,"stop_game")
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
@@ -33,4 +37,13 @@ func change_to_slowmotion(is_slowmotion:bool):
 		world_env.environment=normal_env
 		
 	
+func stop_game_after_time():
+	stop_game_timer.wait_time = 2
+	stop_game_timer.one_shot = true
+	add_child(stop_game_timer)
+	stop_game_timer.start()
 
+func stop_game():
+	dice.disable()
+	print(dice.current_top_number)
+	
