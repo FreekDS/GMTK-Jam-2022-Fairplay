@@ -107,3 +107,7 @@ func disable():
 func _on_Dice_body_entered(body):
 	if body.is_in_group("ground"):
 		$dice_thud_sound.play()
+	
+func enable():
+	self.set_physics_process(true)
+	enabled=true
