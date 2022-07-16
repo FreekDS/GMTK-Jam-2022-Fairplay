@@ -10,7 +10,12 @@ colors = PoolColorArray( 0.0156863, 0.0392157, 0.0470588, 0, 0.29699, 0.803031, 
 [sub_resource type="GDScript" id=5]
 script/source = "extends Line2D
 
-var length = 30
+var length
+
+func _ready():
+	
+	var g = preload(\"res://GAME_GLOBALS.tres\") as GLOBALS
+	length = g.trail_indication_length
 
 func _process(delta):
 	if Input.is_action_pressed(\"mouse_down\"):

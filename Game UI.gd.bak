@@ -11,6 +11,7 @@ export(NodePath) onready var DiceFrame = get_node(DiceFrame) as Sprite
 
 onready var SusMeter = $"SUS Meter"
 
+<<<<<<< HEAD
 
 # Filled by globals
 var SUS_increment
@@ -21,9 +22,17 @@ func _ready():
 	SUS_increment = g.sus_increment
 
 
+func _input(event):
+	if event.is_action_pressed("mouse_down") and not selected:
+=======
+#func _input(event):
+#	if event.is_action_pressed("mouse_down") and not selected:
+#		$AnimationPlayer.play("dice_select")
+#		selected = true
 		
 func start_select_random_dice_face():
 	if not selected:
+>>>>>>> 941eb7e7e3b23c56708613bcd206d14e6b6dc7be
 		$AnimationPlayer.play("dice_select")
 		selected = true
 		
@@ -48,14 +57,7 @@ func start_vizual_end_timer(seconds:int):
 	
 func lose_game():
 	$end_game.visible=true
-	$end_game/lose.visible=true
-	$end_game/restart.disabled=false
-	
-func win_game():
-	$end_game.visible=true
-	$end_game/win.visible=true
-	$end_game/restart.disabled=false
+
 
 func _on_restart_pressed():
-	print("restarting game")
 	emit_signal("restart_game")

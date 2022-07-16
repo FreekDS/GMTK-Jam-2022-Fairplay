@@ -4,8 +4,19 @@ extends RigidBody
 
 var mouse_down_start
 
-export var torque_power = 6.0
-export var slowmotion_torque_power = 15.0
+# Set by globals
+var torque_power = 6.0
+var slowmotion_torque_power = 15.0
+var clamp_velocity = 7
+
+var slow_motion_time
+
+func _ready():
+	var g = preload("res://GAME_GLOBALS.tres") as GLOBALS
+	torque_power = g.dice_torque
+	slowmotion_torque_power = g.dice_slowmotion_torque
+	clamp_velocity = g.dice_angular_max_velocity
+	slow_motion_time = g.slowmotion_speed
 
 
 const max_throw_power = 950
@@ -13,7 +24,7 @@ const min_throw_power = 300
 const throw_height = 100
 const torque_multiplier = 15
 
-export var clamp_velocity = 7
+
 #onready var ray = $raycasts/vierkant
 onready var eenkant = $eenkant
 onready var tweekant = $tweekant
@@ -63,7 +74,7 @@ func _input(event):
 			
 			add_torque(Vector3(dir.y, 0, -dir.x) * power);
 		if event.is_action_pressed("slowmo"):
-			Engine.time_scale = .3
+			Engine.time_scale = slow_motion_time
 			slow_motion = true
 			emit_signal("slow_motion_state_changed", true)
 		if event.is_action_released("slowmo"):
@@ -91,6 +102,11 @@ func disable():
 		Engine.time_scale = 1
 		slow_motion = false
 		emit_signal("slow_motion_state_changed", false)
+
+
+func _on_Dice_body_entered(body):
+	if body.is_in_group("ground"):
+		$dice_thud_sound.play()
 	
 func enable():
 	self.set_physics_process(true)
