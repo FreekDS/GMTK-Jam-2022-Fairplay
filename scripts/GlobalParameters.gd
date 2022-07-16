@@ -5,6 +5,8 @@ class_name GLOBALS
 export(float) var slowmotion_speed = .3
 export(float) var end_game_timer = 2
 
+export(int) var trail_indication_length = 30
+
 export(float) var move_to_dicecam_time = .5
 
 # Dice related

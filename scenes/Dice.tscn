@@ -57,9 +57,10 @@ albedo_color = Color( 0.996078, 1, 0.992157, 1 )
 
 [node name="Dice" type="RigidBody" groups=["dice"]]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
+contacts_reported = 10
+contact_monitor = true
 axis_lock_angular_y = true
 script = ExtResource( 1 )
-torque_power = 1.0
 
 [node name="Model" type="Spatial" parent="."]
 transform = Transform( 0.2, 0, 0, 0, -8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0, 0, 0 )
@@ -82,7 +83,6 @@ material/0 = SubResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.2, 8.88178e-16, 0, -8.88178e-16, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
-visible = false
 shape = SubResource( 5 )
 
 [node name="eenkant" type="RayCast" parent="."]
@@ -137,7 +137,8 @@ collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="dice_thud_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+pitch_scale = 0.65
 
-[connection signal="body_entered" from="." to="." method="_on_body_enter"]
+[connection signal="body_entered" from="." to="." method="_on_Dice_body_entered"]
