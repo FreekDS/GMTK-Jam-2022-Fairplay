@@ -1,6 +1,7 @@
 extends Control
 
 var tween = Tween.new()
+var susTimer = Timer.new()
 
 signal reached_max_sus
 
@@ -8,16 +9,35 @@ export(NodePath) onready var progress = get_node(progress) as TextureProgress
 
 var interpol_time
 var finished = false
+var susDecay
+
+onready var sus0 = $SusImg
+onready var sus1 = $SusImg2
+onready var sus2 = $SusImg3
 
 func _ready():
 	
 	var g = preload("res://GAME_GLOBALS.tres") as GLOBALS
 	interpol_time = g.sus_tween_fill_time
+	susDecay = g.sus_decay
 	
+	susTimer.one_shot = false
+	susTimer.connect("timeout", self, "decrease")
+	
+	add_child(susTimer)
 	add_child(tween)
 	
-# problem: update tween when is running does not work as intended
+	susTimer.start(1)
 
+func decrease():
+	progress.value -= susDecay
+
+func _process(_delta):
+	sus0.shaking = progress.value > 20
+	sus1.shaking = progress.value > 60
+	sus2.shaking = progress.value > 80
+	
+		
 func fill_to(value):
 	if tween.is_active():
 		tween.stop_all()

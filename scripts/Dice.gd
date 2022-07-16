@@ -56,7 +56,7 @@ signal second_bounce_hit()
 
 signal slow_motion_state_changed(is_slowmotion)
 var counter=0
-func _process(delta):
+func _process(_delta):
 	if(eenkant.is_colliding()):
 		current_top_number=3
 	if(tweekant.is_colliding()):

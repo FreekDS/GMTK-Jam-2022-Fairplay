@@ -46,9 +46,9 @@ func animation_ended():
 	
 func increase_sus(slowmotion):
 	if slowmotion:
-		SusMeter.add(SUS_increment)
-	else:
 		SusMeter.add(SUS_increment_slowmotion)
+	else:
+		SusMeter.add(SUS_increment)
 
 
 func start_vizual_end_timer(seconds:int):

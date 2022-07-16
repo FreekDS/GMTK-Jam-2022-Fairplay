@@ -24,4 +24,5 @@ export(int) var normal_fov = 90
 export(float) var sus_increment = 20
 export(float) var sus_incrment_slowmotion = 30
 export(float) var sus_tween_fill_time = .5
+export(int) var sus_decay = 1
 
