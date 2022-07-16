@@ -11,11 +11,15 @@ onready var dice=$Dice
 onready var table=$Table
 onready var dice_cam=$DiceCam
 onready var world_env=$WorldEnvironment
+onready var game_ui=$Game_UI
+
+var second_bounce_leftover_seconds=3
 
 
 func _ready():
 	dice.connect("slow_motion_state_changed",self,"change_to_slowmotion")
 	table.connect("second_bounce_hit",self,"stop_game_after_time")
+	game_ui.connect("restart_game",self,"restart")
 	stop_game_timer.connect("timeout",self,"stop_game")
 	randomize()
 
@@ -24,6 +28,7 @@ func _process(_delta):
 		if not thrown:
 			$Hand.throw()
 			thrown = true
+			game_ui.start_select_random_dice_face()
 
 func change_to_slowmotion(is_slowmotion:bool):
 	if is_slowmotion:
@@ -39,7 +44,9 @@ func change_to_slowmotion(is_slowmotion:bool):
 		
 	
 func stop_game_after_time():
-	stop_game_timer.wait_time = 2
+	print("start timer")
+	game_ui.start_vizual_end_timer(second_bounce_leftover_seconds)
+	stop_game_timer.wait_time = second_bounce_leftover_seconds
 	stop_game_timer.one_shot = true
 	add_child(stop_game_timer)
 	stop_game_timer.start()
@@ -47,4 +54,16 @@ func stop_game_after_time():
 func stop_game():
 	dice.disable()
 	print(dice.current_top_number)
+	if(dice.current_top_number==game_ui.selection):
+		print("goed")
+		game_ui.lose_game()
+	else:
+		print("niet goed")
+		game_ui.lose_game()
+		
+func restart():
+	get_tree().reload_current_scene() 
+	
+
+	
 	

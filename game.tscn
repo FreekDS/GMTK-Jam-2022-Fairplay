@@ -29,7 +29,7 @@ script = ExtResource( 3 )
 normal_env = ExtResource( 10 )
 dof_env = ExtResource( 11 )
 
-[node name="Game UI" parent="." instance=ExtResource( 8 )]
+[node name="Game_UI" parent="." instance=ExtResource( 8 )]
 
 [node name="StartCam" type="Camera" parent="."]
 transform = Transform( 0.158311, -0.494922, 0.854395, 0.0102236, 0.866082, 0.499798, -0.987336, -0.0703883, 0.14217, 6.82444, 3.55013, 0.670303 )

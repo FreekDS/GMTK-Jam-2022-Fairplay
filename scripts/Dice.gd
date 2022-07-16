@@ -91,6 +91,7 @@ func disable():
 		Engine.time_scale = 1
 		slow_motion = false
 		emit_signal("slow_motion_state_changed", false)
-
 	
-
+func enable():
+	self.set_physics_process(true)
+	enabled=true

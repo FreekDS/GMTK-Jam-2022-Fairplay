@@ -1,6 +1,7 @@
 extends Control
 
 signal target_selected(target)
+signal restart_game()
 
 var selection
 var selected = false
@@ -10,15 +11,18 @@ export var SUS_increment = 20
 
 onready var SusMeter = $"SUS Meter"
 
-func _input(event):
-	if event.is_action_pressed("mouse_down") and not selected:
+#func _input(event):
+#	if event.is_action_pressed("mouse_down") and not selected:
+#		$AnimationPlayer.play("dice_select")
+#		selected = true
+		
+func start_select_random_dice_face():
+	if not selected:
 		$AnimationPlayer.play("dice_select")
 		selected = true
 		
-
 func random_frame_animation():
-	
-	var new_frame = DiceFrame.frame
+	var new_frame = DiceFrame.frame 
 	while new_frame == DiceFrame.frame:
 		new_frame = randi() % 6
 	DiceFrame.frame = new_frame
@@ -30,3 +34,15 @@ func animation_ended():
 	
 func increase_sus():
 	SusMeter.add(SUS_increment)
+
+
+func start_vizual_end_timer(seconds:int):
+	$timer_label.visible=true
+	$timer_label.start_timer(seconds)
+	
+func lose_game():
+	$end_game.visible=true
+
+
+func _on_restart_pressed():
+	emit_signal("restart_game")
