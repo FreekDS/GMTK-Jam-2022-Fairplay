@@ -64,6 +64,5 @@ func stop_game():
 func restart():
 	get_tree().reload_current_scene() 
 	
-
 func _on_Dice_foefelen(in_slowmotion):
 	$Game_UI.increase_sus(in_slowmotion)
