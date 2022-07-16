@@ -2,12 +2,17 @@ extends Spatial
 
 var thrown = false
 
+export(Environment) var normal_env = null
+export(Environment) var dof_env = null
+
 onready var dice=$Dice
 onready var table=$Table
+onready var dice_cam=$DiceCam
+onready var world_env=$WorldEnvironment
 
 
 func _ready():
-	dice.connect("slow_motion_state_changed",self,"change_bounce_value_to_slowmotion")
+	dice.connect("slow_motion_state_changed",self,"change_to_slowmotion")
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
@@ -15,13 +20,17 @@ func _process(delta):
 			$Hand.throw()
 			thrown = true
 
-func change_bounce_value_to_slowmotion(is_slowmotion:bool):
+func change_to_slowmotion(is_slowmotion:bool):
 	if is_slowmotion:
-		print("bounce going to 1200")
+		print("Going to slow motion mode")
 		table.bounce_value=1200
+		dice_cam.fov=50
+		world_env.environment=dof_env
 	else :
-		print("bounce going back to 400")
+		print("Going to normal motion mode")
 		table.bounce_value=400
+		dice_cam.fov=90
+		world_env.environment=normal_env
 		
 	
 

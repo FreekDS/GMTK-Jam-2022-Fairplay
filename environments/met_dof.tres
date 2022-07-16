@@ -1,0 +1,5 @@
+[gd_resource type="Environment" format=2]
+
+[resource]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 0.74
