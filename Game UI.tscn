@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://SUS Meter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game UI.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://font/dynamic_font.tres" type="DynamicFont" id=5]
 [ext_resource path="res://font/double_pixel-7.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://img/win.png" type="Texture" id=7]
+[ext_resource path="res://game_save.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
@@ -92,6 +93,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 DiceFrame = NodePath("gerief/HSplitContainer/Control/Sprite")
+game_save_class = ExtResource( 8 )
 
 [node name="end_game" type="Control" parent="."]
 visible = false
@@ -165,6 +167,22 @@ rect_min_size = Vector2( 360, 0 )
 custom_fonts/font = ExtResource( 5 )
 text = "Nog ne keer"
 clip_text = true
+
+[node name="high_score_label" type="Label" parent="end_game"]
+margin_left = 605.0
+margin_top = 97.0
+margin_right = 933.0
+margin_bottom = 157.0
+custom_fonts/font = ExtResource( 5 )
+text = "High score"
+
+[node name="streak_label" type="Label" parent="end_game"]
+margin_left = 606.0
+margin_top = 18.0
+margin_right = 934.0
+margin_bottom = 78.0
+custom_fonts/font = ExtResource( 5 )
+text = "Current streak"
 
 [node name="gerief" type="CenterContainer" parent="."]
 anchor_right = 1.0
