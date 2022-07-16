@@ -9,12 +9,14 @@ var delta=0.1
 
 func _ready():
 	show_timer.connect("timeout",self,"timer_step")
+	add_child(show_timer)
+	
 # Called when the node enters the scene tree for the first time.
 func start_timer(seconds:int):
 	time_left=seconds
 	show_timer.wait_time = delta
-	add_child(show_timer)
 	show_timer.start()
+
 func timer_step():
 	time_left-=delta
 	if(time_left>0):
