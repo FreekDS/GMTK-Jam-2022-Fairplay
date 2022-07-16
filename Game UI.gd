@@ -46,13 +46,20 @@ func start_vizual_end_timer(seconds:int):
 	$timer_label.visible=true
 	$timer_label.start_timer(seconds)
 	
-func lose_game():
+func end():
 	$end_game.visible=true
+	$gerief.visible=false
+	$"SUS Meter".visible=false
+	$timer_label.visible=false
+	
+	
+func lose_game():
+	end()
 	$end_game/lose.visible=true
 	$end_game/restart.disabled=false
 	
 func win_game():
-	$end_game.visible=true
+	end()
 	$end_game/win.visible=true
 	$end_game/restart.disabled=false
 

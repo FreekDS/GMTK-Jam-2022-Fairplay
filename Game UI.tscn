@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://SUS Meter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game UI.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scripts/label_timer.gd" type="Script" id=4]
 [ext_resource path="res://font/dynamic_font.tres" type="DynamicFont" id=5]
 [ext_resource path="res://font/double_pixel-7.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://img/win.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
@@ -74,7 +75,7 @@ tracks/1/keys = {
 } ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CenterContainer/HSplitContainer/Control/Sprite:modulate")
+tracks/2/path = NodePath("gerief/HSplitContainer/Control/Sprite:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -90,7 +91,7 @@ tracks/2/keys = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-DiceFrame = NodePath("CenterContainer/HSplitContainer/Control/Sprite")
+DiceFrame = NodePath("gerief/HSplitContainer/Control/Sprite")
 
 [node name="end_game" type="Control" parent="."]
 visible = false
@@ -100,21 +101,25 @@ margin_bottom = 608.0
 [node name="lose" type="Control" parent="end_game"]
 visible = false
 show_behind_parent = true
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 513.0
+margin_top = 298.0
+margin_right = 513.0
+margin_bottom = 298.0
 mouse_filter = 1
 
 [node name="lose_colour" type="ColorRect" parent="end_game/lose"]
-margin_right = 1044.0
-margin_bottom = 604.0
+margin_left = -517.0
+margin_top = -299.0
+margin_right = 527.0
+margin_bottom = 305.0
 mouse_filter = 1
 color = Color( 0.898039, 0.0235294, 0.0235294, 0.278431 )
 
 [node name="lose_game" type="Label" parent="end_game/lose"]
-margin_left = 372.0
-margin_top = 180.0
-margin_right = 612.0
-margin_bottom = 240.0
+margin_left = -110.0
+margin_top = -111.0
+margin_right = 130.0
+margin_bottom = -51.0
 custom_fonts/font = SubResource( 2 )
 text = "HAHA LOSER"
 align = 1
@@ -122,59 +127,70 @@ align = 1
 [node name="win" type="Control" parent="end_game"]
 visible = false
 show_behind_parent = true
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 513.0
+margin_top = 298.0
+margin_right = 513.0
+margin_bottom = 298.0
 mouse_filter = 1
 
 [node name="win_game" type="Label" parent="end_game/win"]
-margin_left = 374.0
-margin_top = 186.0
-margin_right = 614.0
-margin_bottom = 246.0
+visible = false
+margin_left = -117.0
+margin_top = -110.0
+margin_right = 123.0
+margin_bottom = -50.0
 custom_fonts/font = SubResource( 2 )
 text = "FEEST"
 align = 1
 
 [node name="win_colour" type="ColorRect" parent="end_game/win"]
-margin_right = 1044.0
-margin_bottom = 604.0
+margin_left = -520.0
+margin_top = -312.0
+margin_right = 524.0
+margin_bottom = 311.0
 mouse_filter = 1
 color = Color( 0.517647, 0.811765, 0.247059, 0.278431 )
 
+[node name="Win" type="Sprite" parent="end_game/win"]
+position = Vector2( 0, -44 )
+scale = Vector2( 1.68519, 1.68519 )
+texture = ExtResource( 7 )
+
 [node name="restart" type="Button" parent="end_game"]
-margin_left = 341.0
-margin_top = 286.0
-margin_right = 652.0
-margin_bottom = 352.0
+margin_left = 24.0
+margin_top = 512.0
+margin_right = 384.0
+margin_bottom = 578.0
+rect_min_size = Vector2( 360, 0 )
 custom_fonts/font = ExtResource( 5 )
 text = "Nog ne keer"
 clip_text = true
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="gerief" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 0.15
 margin_top = 20.0
 rect_min_size = Vector2( 0, 90 )
 
-[node name="HSplitContainer" type="HSplitContainer" parent="CenterContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="gerief"]
 margin_left = 424.0
 margin_top = 25.0
 margin_right = 600.0
 margin_bottom = 65.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/HSplitContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="gerief/HSplitContainer"]
 margin_right = 100.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 40 )
 text = "I will throw"
 
-[node name="Control" type="Control" parent="CenterContainer/HSplitContainer"]
+[node name="Control" type="Control" parent="gerief/HSplitContainer"]
 margin_left = 112.0
 margin_right = 176.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 64, 0 )
 
-[node name="Sprite" type="Sprite" parent="CenterContainer/HSplitContainer/Control"]
+[node name="Sprite" type="Sprite" parent="gerief/HSplitContainer/Control"]
 position = Vector2( 9, 5 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
@@ -195,7 +211,6 @@ margin_bottom = -0.200043
 anims/dice_select = SubResource( 1 )
 
 [node name="timer_label" type="RichTextLabel" parent="."]
-visible = false
 margin_left = 12.0
 margin_top = 32.0
 margin_right = 112.0
