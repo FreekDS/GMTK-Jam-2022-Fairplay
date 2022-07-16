@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Table.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Hand.tscn" type="PackedScene" id=2]
@@ -7,17 +7,29 @@
 [ext_resource path="res://scripts/DiceCam.gd" type="Script" id=5]
 [ext_resource path="res://scripts/StartCam.gd" type="Script" id=6]
 
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 100, 2, 100 )
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.054902, 0.282353, 0.156863, 1 )
+
+[sub_resource type="ConcavePolygonShape" id=3]
+data = PoolVector3Array( -50, 1, 50, 50, 1, 50, -50, -1, 50, 50, 1, 50, 50, -1, 50, -50, -1, 50, 50, 1, -50, -50, 1, -50, 50, -1, -50, -50, 1, -50, -50, -1, -50, 50, -1, -50, 50, 1, 50, 50, 1, -50, 50, -1, 50, 50, 1, -50, 50, -1, -50, 50, -1, 50, -50, 1, -50, -50, 1, 50, -50, -1, -50, -50, 1, 50, -50, -1, 50, -50, -1, -50, 50, 1, 50, -50, 1, 50, 50, 1, -50, -50, 1, 50, -50, 1, -50, 50, 1, -50, -50, -1, 50, 50, -1, 50, -50, -1, -50, 50, -1, 50, 50, -1, -50, -50, -1, -50 )
+
+[sub_resource type="Environment" id=4]
+
 [node name="Game" type="Spatial"]
 script = ExtResource( 3 )
 
 [node name="StartCam" type="Camera" parent="."]
 transform = Transform( 0.158311, -0.494922, 0.854395, 0.0102236, 0.866082, 0.499798, -0.987336, -0.0703883, 0.14217, 6.82444, 3.55013, 0.670303 )
 current = true
+far = 8192.0
 script = ExtResource( 6 )
 DiceCam = NodePath("../DiceCam")
 
 [node name="Table" parent="." groups=["table"] instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.17612, -0.804432, 0.320777 )
+transform = Transform( -3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -18.4732, -4.931, 0 )
 
 [node name="Dice" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.12203, 1.7, -1.87075 )
@@ -25,12 +37,33 @@ gravity_scale = 0.8
 
 [node name="DiceCam" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 0, 0, 0 )
+far = 8192.0
 script = ExtResource( 5 )
 dice = NodePath("../Dice")
 diceOffset = Vector3( 0, 3, 1 )
 
 [node name="Hand" parent="." instance=ExtResource( 2 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.5683, 0.581873, -1.76025 )
+
+[node name="Floor" type="StaticBody" parent="."]
+transform = Transform( 5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0615, -20.6996, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0615, -20.6996, 0 )
+shape = SubResource( 3 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -0.906372, -0.0204898, 0.421983, 0.42248, -0.0419794, 0.9054, -0.000836845, 0.998908, 0.0467055, 0, 26.7864, 0 )
+light_energy = 1.5
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 4 )
 
 [connection signal="thrown" from="Hand" to="StartCam" method="_on_Hand_thrown"]
 [connection signal="thrown" from="Hand" to="Dice" method="_on_Hand_thrown"]
