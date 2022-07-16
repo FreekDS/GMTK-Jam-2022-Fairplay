@@ -38,6 +38,7 @@ far = 8192.0
 script = ExtResource( 6 )
 DiceCam = NodePath("../DiceCam")
 DiceCamEffect = NodePath("../DiceCamEffect")
+Trail = NodePath("../trail")
 
 [node name="Table" parent="." groups=["table"] instance=ExtResource( 1 )]
 transform = Transform( -3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -18.4732, -5.44771, 0 )
@@ -78,6 +79,7 @@ shadow_enabled = true
 environment = ExtResource( 10 )
 
 [node name="trail" parent="." instance=ExtResource( 12 )]
+visible = false
 
 [connection signal="thrown" from="Hand" to="StartCam" method="_on_Hand_thrown"]
 [connection signal="thrown" from="Hand" to="Dice" method="_on_Hand_thrown"]
