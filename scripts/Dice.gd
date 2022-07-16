@@ -14,7 +14,13 @@ const throw_height = 100
 const torque_multiplier = 15
 
 export var clamp_velocity = 7
-onready var ray = $RayCast
+#onready var ray = $raycasts/vierkant
+onready var eenkant = $eenkant
+onready var tweekant = $tweekant
+onready var driekant = $driekant
+onready var vierkant = $vierkant
+onready var vijfkant = $vijfkant
+onready var zeskant = $zeskant
 
 var slow_motion = false
 
@@ -26,26 +32,18 @@ var current_top_number=2
 signal slow_motion_state_changed(is_slowmotion)
 var counter=0
 func _process(delta):
-	ray.set_cast_to(linear_velocity.normalized())
-	var ding=self.get_global_transform().basis
-	#print(ding)
-	if(ding.x[2]<0.1 and ding.x[2]>-0.1):
-		if(ding.x[1]<1.1 and ding.x[1]>0.9):
-			current_top_number=6
-		else:
-			current_top_number=5
-	if(ding.y[2]<0.1 and ding.y[2]>-0.1):
-		if(ding.y[1]<1.1 and ding.y[1]>0.9):
-			current_top_number=2
-		else:
-			current_top_number=4
-			
-	if(ding.z[2]<0.1 and ding.z[2]>-0.1):
-		if(ding.z[1]<1.1 and ding.z[1]>0.9):
-			current_top_number=3
-		else:
-			current_top_number=1
-	#Vector2(ding.x, ding.z).angle()
+	if(eenkant.is_colliding()):
+		current_top_number=3
+	if(tweekant.is_colliding()):
+		current_top_number=4
+	if(driekant.is_colliding()):
+		current_top_number=1
+	if(vierkant.is_colliding()):
+		current_top_number=2
+	if(vijfkant.is_colliding()):
+		current_top_number=6
+	if(zeskant.is_colliding()):
+		current_top_number=5
 
 	
 func _integrate_forces(state):
