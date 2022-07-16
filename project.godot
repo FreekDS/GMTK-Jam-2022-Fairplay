@@ -24,6 +24,14 @@ config/name="GMTK 2022"
 run/main_scene="res://game.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/stretch/mode="viewport"
+
+[global]
+
+scale=false
+
 [input]
 
 mouse_down={
