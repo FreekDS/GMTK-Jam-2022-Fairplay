@@ -94,6 +94,7 @@ script = ExtResource( 2 )
 DiceFrame = NodePath("gerief/HSplitContainer/Control/Sprite")
 
 [node name="end_game" type="Control" parent="."]
+visible = false
 margin_right = 1006.0
 margin_bottom = 608.0
 
