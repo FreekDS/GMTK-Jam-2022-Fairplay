@@ -1,0 +1,125 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends ColorRect
+
+"
+
+[sub_resource type="Animation" id=8]
+resource_name = "blink"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("DiceCamEffect/HSplitContainer/ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+// https://www.shadertoy.com/view/MdcfzH
+uniform float CRT_STRENGTH = 0.8;
+uniform float CA_MAX_PIXEL_DIST = 5.0;
+uniform float BORDER_SIZE =  0.2;
+uniform float BORDER_STRENGTH = 0.8;
+uniform float SATURATION = 1.4;
+
+
+vec4 read(vec2 uv, sampler2D Screen)
+{
+    //you might wanna do stuff here when using this in your shader
+    return texture(Screen, uv);
+}
+vec3 saturation(vec3 rgb, float amount)
+{
+    const vec3 W = vec3(0.2125, 0.7154, 0.0721);
+    vec3 intensity = vec3(dot(rgb, W));
+    return mix(intensity, rgb, amount);
+}
+void fragment()
+{
+    vec2 ca0;
+	vec2 ca1;
+	vec2 ca2;
+	
+	vec2 iResolution = 1.0 / SCREEN_PIXEL_SIZE;
+	
+    ca0 = vec2(-CA_MAX_PIXEL_DIST, -CA_MAX_PIXEL_DIST);
+    ca1 = vec2(0.0);
+    ca2 = vec2(CA_MAX_PIXEL_DIST, CA_MAX_PIXEL_DIST);
+    
+    vec2 pixel = 1.0 / iResolution.xy;
+    vec2 uv = FRAGCOORD.xy * pixel;
+
+
+    int row = int(FRAGCOORD.y)%2;
+    int col = (int(FRAGCOORD.x)+row)%3;
+    
+    vec2 nuv = 2. * abs(uv-vec2(0.5));
+    vec2 caShift = (length(nuv) / sqrt(2.0)) * pixel;
+    
+    vec3 src = vec3(0.0);
+	src[0] = read(uv - ca0 * caShift, SCREEN_TEXTURE)[0] * ((0==col) ? 1.0 : 1.-CRT_STRENGTH);
+	src[1] = read(uv - ca1 * caShift, SCREEN_TEXTURE)[1] * ((1==col) ? 1.0 : 1.-CRT_STRENGTH);
+	src[2] = read(uv - ca2 * caShift, SCREEN_TEXTURE)[2] * ((2==col) ? 1.0 : 1.-CRT_STRENGTH);
+
+    float d = (1.-nuv.x) * (1.-nuv.y);
+    d = (1.-BORDER_STRENGTH) + BORDER_STRENGTH * smoothstep(0.0, BORDER_SIZE, sqrt(d));
+    src *= d;
+    src = saturation(src, SATURATION);
+    COLOR = vec4(src,1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/CRT_STRENGTH = 0.5
+shader_param/CA_MAX_PIXEL_DIST = 2.0
+shader_param/BORDER_SIZE = 0.1
+shader_param/BORDER_STRENGTH = 0.3
+shader_param/SATURATION = 0.9
+
+[node name="DiceCamEffect" type="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ColorRect2" type="ColorRect" parent="HSplitContainer"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+color = Color( 1, 0, 0, 1 )
+script = SubResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HSplitContainer/ColorRect2"]
+root_node = NodePath("../../../..")
+autoplay = "blink"
+anims/blink = SubResource( 8 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HSplitContainer"]
+margin_left = 44.0
+margin_right = 144.0
+margin_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 2
+size_flags_vertical = 3
+text = "
+DICE CAM"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 6 )
+anchor_right = 1.0
+anchor_bottom = 1.0

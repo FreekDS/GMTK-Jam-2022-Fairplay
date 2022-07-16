@@ -134,7 +134,7 @@ mesh = SubResource( 7 )
 material/0 = ExtResource( 1 )
 
 [node name="hand" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.3, 0, 0, 0, 0.115434, 0.276903, 0, -0.276903, 0.115434, 0, 0.470914, -3 )
+transform = Transform( 0.3, 0, 0, 0, -1.31134e-08, 0.3, 0, -0.3, -1.31134e-08, 0, 0, -3 )
 
 [node name="KinematicBody" type="KinematicBody" parent="hand"]
 
