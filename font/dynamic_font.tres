@@ -1,0 +1,10 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://font/double_pixel-7.ttf"
+
+[resource]
+size = 60
+extra_spacing_char = 2
+extra_spacing_space = 2
+font_data = SubResource( 1 )

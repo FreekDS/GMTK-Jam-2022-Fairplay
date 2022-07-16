@@ -56,7 +56,7 @@ func stop_game():
 	print(dice.current_top_number)
 	if(dice.current_top_number==game_ui.selection):
 		print("goed")
-		game_ui.lose_game()
+		game_ui.win_game()
 	else:
 		print("niet goed")
 		game_ui.lose_game()

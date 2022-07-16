@@ -42,7 +42,14 @@ func start_vizual_end_timer(seconds:int):
 	
 func lose_game():
 	$end_game.visible=true
-
+	$end_game/lose.visible=true
+	$end_game/restart.disabled=false
+	
+func win_game():
+	$end_game.visible=true
+	$end_game/win.visible=true
+	$end_game/restart.disabled=false
 
 func _on_restart_pressed():
+	print("restarting game")
 	emit_signal("restart_game")

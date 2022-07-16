@@ -7,6 +7,11 @@
 [ext_resource path="res://font/dynamic_font.tres" type="DynamicFont" id=5]
 [ext_resource path="res://font/double_pixel-7.ttf" type="DynamicFontData" id=6]
 
+[sub_resource type="DynamicFont" id=2]
+size = 60
+outline_size = 1
+font_data = ExtResource( 6 )
+
 [sub_resource type="Animation" id=1]
 resource_name = "dice_select"
 length = 3.0
@@ -81,16 +86,69 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.368627, 0.945098, 0.0431373, 1 ), Color( 1, 1, 1, 1 ), Color( 0.368627, 0.945098, 0.0431373, 1 ), Color( 1, 1, 1, 1 ), Color( 0.368627, 0.945098, 0.0431373, 1 ), Color( 1, 1, 1, 1 ), Color( 0.368627, 0.945098, 0.0431373, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=2]
-size = 60
-outline_size = 1
-font_data = ExtResource( 6 )
-
 [node name="Game UI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 DiceFrame = NodePath("CenterContainer/HSplitContainer/Control/Sprite")
+
+[node name="end_game" type="Control" parent="."]
+visible = false
+margin_right = 1006.0
+margin_bottom = 608.0
+
+[node name="lose" type="Control" parent="end_game"]
+visible = false
+show_behind_parent = true
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 1
+
+[node name="lose_colour" type="ColorRect" parent="end_game/lose"]
+margin_right = 1044.0
+margin_bottom = 604.0
+mouse_filter = 1
+color = Color( 0.898039, 0.0235294, 0.0235294, 0.278431 )
+
+[node name="lose_game" type="Label" parent="end_game/lose"]
+margin_left = 372.0
+margin_top = 180.0
+margin_right = 612.0
+margin_bottom = 240.0
+custom_fonts/font = SubResource( 2 )
+text = "HAHA LOSER"
+align = 1
+
+[node name="win" type="Control" parent="end_game"]
+visible = false
+show_behind_parent = true
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 1
+
+[node name="win_game" type="Label" parent="end_game/win"]
+margin_left = 374.0
+margin_top = 186.0
+margin_right = 614.0
+margin_bottom = 246.0
+custom_fonts/font = SubResource( 2 )
+text = "FEEST"
+align = 1
+
+[node name="win_colour" type="ColorRect" parent="end_game/win"]
+margin_right = 1044.0
+margin_bottom = 604.0
+mouse_filter = 1
+color = Color( 0.517647, 0.811765, 0.247059, 0.278431 )
+
+[node name="restart" type="Button" parent="end_game"]
+margin_left = 341.0
+margin_top = 286.0
+margin_right = 652.0
+margin_bottom = 352.0
+custom_fonts/font = ExtResource( 5 )
+text = "Nog ne keer"
+clip_text = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -137,7 +195,6 @@ margin_bottom = -0.200043
 anims/dice_select = SubResource( 1 )
 
 [node name="timer_label" type="RichTextLabel" parent="."]
-visible = false
 margin_left = 12.0
 margin_top = 32.0
 margin_right = 112.0
@@ -148,33 +205,5 @@ tab_size = 24
 text = "3 s"
 custom_effects = [ null, null, null, null, null ]
 script = ExtResource( 4 )
-
-[node name="end_game" type="Control" parent="."]
-visible = false
-margin_right = 1006.0
-margin_bottom = 608.0
-
-[node name="lose_colour" type="ColorRect" parent="end_game"]
-show_behind_parent = true
-margin_right = 1044.0
-margin_bottom = 604.0
-color = Color( 0.898039, 0.0235294, 0.0235294, 0.278431 )
-
-[node name="lose_game" type="Label" parent="end_game"]
-margin_left = 372.0
-margin_top = 180.0
-margin_right = 591.0
-margin_bottom = 240.0
-custom_fonts/font = SubResource( 2 )
-text = "HAHA LOSER"
-
-[node name="restart" type="Button" parent="end_game"]
-margin_left = 341.0
-margin_top = 286.0
-margin_right = 652.0
-margin_bottom = 337.0
-custom_fonts/font = ExtResource( 5 )
-text = "Nog ne keer"
-clip_text = true
 
 [connection signal="pressed" from="end_game/restart" to="." method="_on_restart_pressed"]
