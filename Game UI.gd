@@ -6,9 +6,19 @@ var selection
 var selected = false
 
 export(NodePath) onready var DiceFrame = get_node(DiceFrame) as Sprite
-export var SUS_increment = 20
+
 
 onready var SusMeter = $"SUS Meter"
+
+
+# Filled by globals
+var SUS_increment
+
+func _ready():
+	
+	var g = preload("res://GAME_GLOBALS.tres") as GLOBALS
+	SUS_increment = g.sus_increment
+
 
 func _input(event):
 	if event.is_action_pressed("mouse_down") and not selected:
