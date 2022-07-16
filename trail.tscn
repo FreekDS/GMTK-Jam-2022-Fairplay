@@ -1,20 +1,59 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [sub_resource type="Curve" id=6]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 1, Vector2( 1, 1 ), 0.0, 0.0, 1, 0 ]
+_data = [ Vector2( 0, 0 ), 0.0, 1.9195, 0, 1, Vector2( 0.516234, 0.990909 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.481818 ), -1.05235, 0.0, 1, 0 ]
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.245487, 1 )
+colors = PoolColorArray( 0.0156863, 0.0392157, 0.0470588, 0, 0.29699, 0.803031, 0.978777, 0.776173, 0.0987854, 0.747361, 0.972656, 1 )
 
 [sub_resource type="GDScript" id=5]
 script/source = "extends Line2D
 
-var length = 50
+var length = 30
 
 func _process(delta):
 	if Input.is_action_pressed(\"mouse_down\"):
 		add_point(get_global_mouse_position())
 		while get_point_count() > length:
 			remove_point(0)
+	if Input.is_action_just_released(\"mouse_down\"):
+		$AnimationPlayer.play(\"fade\")
 "
+
+[sub_resource type="Animation" id=8]
+resource_name = "fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:points")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array(  ) ]
+}
 
 [node name="trail" type="Line2D"]
 width_curve = SubResource( 6 )
+default_color = Color( 0.4, 0.501961, 1, 1 )
+gradient = SubResource( 7 )
 script = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fade = SubResource( 8 )
