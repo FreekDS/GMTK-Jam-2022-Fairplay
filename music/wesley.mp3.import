@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/wesley.mp3-d902b482dc42f660059cac3448ae559a.mp3str"
+
+[deps]
+
+source_file="res://music/wesley.mp3"
+dest_files=[ "res://.import/wesley.mp3-d902b482dc42f660059cac3448ae559a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

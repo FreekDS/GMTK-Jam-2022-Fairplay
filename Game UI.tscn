@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://SUS Meter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game UI.gd" type="Script" id=2]
@@ -11,6 +11,13 @@
 [sub_resource type="DynamicFont" id=2]
 size = 60
 outline_size = 1
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+extra_spacing_top = 3
+extra_spacing_char = 4
+extra_spacing_space = -4
 font_data = ExtResource( 6 )
 
 [sub_resource type="Animation" id=1]
@@ -94,7 +101,6 @@ script = ExtResource( 2 )
 DiceFrame = NodePath("gerief/HSplitContainer/Control/Sprite")
 
 [node name="end_game" type="Control" parent="."]
-visible = false
 margin_right = 1006.0
 margin_bottom = 608.0
 
@@ -125,7 +131,6 @@ text = "HAHA LOSER"
 align = 1
 
 [node name="win" type="Control" parent="end_game"]
-visible = false
 show_behind_parent = true
 margin_left = 513.0
 margin_top = 298.0
@@ -155,6 +160,18 @@ color = Color( 0.517647, 0.811765, 0.247059, 0.278431 )
 position = Vector2( 0, -44 )
 scale = Vector2( 1.68519, 1.68519 )
 texture = ExtResource( 7 )
+
+[node name="motd" type="RichTextLabel" parent="end_game/win"]
+margin_left = 115.0
+margin_top = -240.0
+margin_right = 489.0
+margin_bottom = -123.0
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "Some quote
+-Some guy"
+text = "Some quote
+-Some guy"
 
 [node name="sus" type="Control" parent="end_game"]
 visible = false
