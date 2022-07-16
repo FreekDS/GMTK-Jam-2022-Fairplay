@@ -16,14 +16,11 @@ current = true
 script = ExtResource( 6 )
 DiceCam = NodePath("../DiceCam")
 
-[node name="Table" parent="." instance=ExtResource( 1 )]
+[node name="Table" parent="." groups=["table"] instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.17612, -0.804432, 0.320777 )
 
-[node name="Hand" parent="." instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.95053, 1.11695, -1.35511 )
-
 [node name="Dice" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.68442, 1.7, -1.87075 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.12203, 1.7, -1.87075 )
 gravity_scale = 0.8
 
 [node name="DiceCam" type="Camera" parent="."]
@@ -31,6 +28,9 @@ transform = Transform( 1, 0, 0, 0, 0.173648, 0.984808, 0, -0.984808, 0.173648, 0
 script = ExtResource( 5 )
 dice = NodePath("../Dice")
 diceOffset = Vector3( 0, 3, 1 )
+
+[node name="Hand" parent="." instance=ExtResource( 2 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.5683, 0.581873, -1.76025 )
 
 [connection signal="thrown" from="Hand" to="StartCam" method="_on_Hand_thrown"]
 [connection signal="thrown" from="Hand" to="Dice" method="_on_Hand_thrown"]

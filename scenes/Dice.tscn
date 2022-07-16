@@ -57,7 +57,7 @@ albedo_color = Color( 0.996078, 1, 0.992157, 1 )
 [node name="Dice" type="RigidBody" groups=["dice"]]
 axis_lock_angular_y = true
 script = ExtResource( 1 )
-torque_power = 10.0
+torque_power = 1.0
 
 [node name="Model" type="Spatial" parent="."]
 transform = Transform( 0.2, 0, 0, 0, -8.74228e-09, 0.2, 0, -0.2, -8.74228e-09, 0, 0, 0 )
@@ -79,4 +79,10 @@ material/0 = SubResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
+visible = false
 shape = SubResource( 5 )
+
+[node name="RayCast" type="RayCast" parent="."]
+enabled = true
+collide_with_areas = true
+collide_with_bodies = false

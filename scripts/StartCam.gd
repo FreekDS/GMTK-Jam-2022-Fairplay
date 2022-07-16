@@ -20,4 +20,3 @@ func change_camera(_s, _g):
 
 func _on_Hand_thrown():
 	move_to_dicecam()
-	pass # Replace with function body.
