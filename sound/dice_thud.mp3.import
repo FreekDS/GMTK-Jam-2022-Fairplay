@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dice_thud.mp3-335c7e3ee5e1d1d7686f6ca4dbc55b7e.mp3str"
+
+[deps]
+
+source_file="res://sound/dice_thud.mp3"
+dest_files=[ "res://.import/dice_thud.mp3-335c7e3ee5e1d1d7686f6ca4dbc55b7e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

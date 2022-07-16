@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/Dice.gd" type="Script" id=1]
+[ext_resource path="res://sound/dice_thud.wav" type="AudioStream" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]
 resource_name = "Material.003"
@@ -88,3 +89,8 @@ shape = SubResource( 5 )
 enabled = true
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_body_enter"]
