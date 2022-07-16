@@ -42,7 +42,7 @@ DiceCamEffect = NodePath("../DiceCamEffect")
 transform = Transform( -3.49691e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.49691e-08, -18.4732, -5.44771, 0 )
 
 [node name="Dice" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.12203, 1.7, -1.87075 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.21619, 1.88669, -1.87075 )
 gravity_scale = 0.8
 
 [node name="DiceCam" type="Camera" parent="."]
