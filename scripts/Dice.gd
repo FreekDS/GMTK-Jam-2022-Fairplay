@@ -7,6 +7,12 @@ var mouse_down_start
 export var torque_power = 6.0
 export var slowmotion_torque_power = 15.0
 
+
+const max_throw_power = 1000
+const min_throw_power = 300
+const throw_height = 100
+const torque_multiplier = 15
+
 export var clamp_velocity = 7
 onready var ray = $RayCast
 
@@ -15,6 +21,7 @@ var slow_motion = false
 var enabled=true
 
 var current_top_number=2
+
 
 signal slow_motion_state_changed(is_slowmotion)
 var counter=0
@@ -68,8 +75,16 @@ func _input(event):
 
 
 func _on_Hand_thrown():
-	add_force(Vector3(-350, 100, 0), Vector3(0,0,0))
-	add_torque(Vector3(randf(), randf(), randf()) * 10)
+
+	var throw_power = rand_range(min_throw_power, max_throw_power)
+	var torque = Vector3(
+		rand_range(-1, 1),
+		rand_range(-1, 1),
+		rand_range(-1, 1)
+	)
+	
+	add_force(Vector3(-throw_power, throw_height, 0), Vector3(0,0,0))
+	add_torque(torque * torque_multiplier)
 	
 func disable():
 	self.set_physics_process(false)
@@ -78,3 +93,6 @@ func disable():
 		Engine.time_scale = 1
 		slow_motion = false
 		emit_signal("slow_motion_state_changed", false)
+
+	
+

@@ -2,6 +2,8 @@ extends Control
 
 var tween = Tween.new()
 
+signal reached_max_sus
+
 export(NodePath) onready var progress = get_node(progress) as TextureProgress
 
 func _ready():

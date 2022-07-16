@@ -1,7 +1,7 @@
 extends StaticBody
 
 
-var bounce_value=400
+var bounce_value=600
 
 var hits = 0
 
