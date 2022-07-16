@@ -21,7 +21,7 @@ var globals = preload("res://GAME_GLOBALS.tres") as GLOBALS
 func _ready():
 	add_child(stop_game_timer)
 	dice.connect("slow_motion_state_changed",self,"change_to_slowmotion")
-	table.connect("second_bounce_hit",self,"stop_game_after_time")
+	dice.connect("second_bounce_hit",self,"stop_game_after_time")
 	game_ui.connect("restart_game",self,"restart")
 	stop_game_timer.connect("timeout",self,"stop_game")
 	randomize()
@@ -36,12 +36,10 @@ func _process(_delta):
 func change_to_slowmotion(is_slowmotion:bool):
 	if is_slowmotion:
 #		print("Going to slow motion mode")
-		table.bounce_value = globals.dice_bounce_base * globals.dice_bounce_slowmotion_multiplier
 		dice_cam.fov= globals.slowmotion_fov
 		world_env.environment=dof_env
 	else :
 #		print("Going to normal motion mode")
-		table.bounce_value= globals.dice_bounce_base
 		dice_cam.fov= globals.normal_fov
 		world_env.environment=normal_env
 		

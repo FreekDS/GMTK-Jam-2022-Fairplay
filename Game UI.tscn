@@ -195,6 +195,7 @@ margin_bottom = -0.200043
 anims/dice_select = SubResource( 1 )
 
 [node name="timer_label" type="RichTextLabel" parent="."]
+visible = false
 margin_left = 12.0
 margin_top = 32.0
 margin_right = 112.0

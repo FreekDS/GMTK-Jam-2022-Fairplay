@@ -8,6 +8,8 @@ var mouse_down_start
 var torque_power = 6.0
 var slowmotion_torque_power = 15.0
 var clamp_velocity = 7
+var dice_bounce_base = 600
+var dice_bounce_slowmotion_multiplier = 3
 
 var slow_motion_time
 
@@ -17,6 +19,9 @@ func _ready():
 	slowmotion_torque_power = g.dice_slowmotion_torque
 	clamp_velocity = g.dice_angular_max_velocity
 	slow_motion_time = g.slowmotion_speed
+	dice_bounce_base = g.dice_bounce_base
+	dice_bounce_slowmotion_multiplier = g.dice_bounce_slowmotion_multiplier
+	boing_boing=dice_bounce_base
 
 
 const max_throw_power = 950
@@ -37,8 +42,14 @@ var slow_motion = false
 
 var enabled=true
 
+var boing_boing=600
+
 var current_top_number=2
 
+
+var hits = 0
+
+signal second_bounce_hit()
 
 signal slow_motion_state_changed(is_slowmotion)
 var counter=0
@@ -76,10 +87,12 @@ func _input(event):
 		if event.is_action_pressed("slowmo"):
 			Engine.time_scale = slow_motion_time
 			slow_motion = true
+			boing_boing=dice_bounce_base*dice_bounce_slowmotion_multiplier
 			emit_signal("slow_motion_state_changed", true)
 		if event.is_action_released("slowmo"):
 			Engine.time_scale = 1
 			slow_motion = false
+			boing_boing=dice_bounce_base
 			emit_signal("slow_motion_state_changed", false)
 
 
@@ -107,7 +120,16 @@ func disable():
 func _on_Dice_body_entered(body):
 	if body.is_in_group("ground"):
 		$dice_thud_sound.play()
+		if hits == 0:
+			self.add_force(Vector3.UP * boing_boing, Vector3.ZERO)
+		else:
+			emit_signal("second_bounce_hit")
+		hits += 1
+
 	
 func enable():
 	self.set_physics_process(true)
 	enabled=true
+
+
+
