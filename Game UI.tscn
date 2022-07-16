@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://SUS Meter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game UI.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://font/double_pixel-7.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://img/win.png" type="Texture" id=7]
 [ext_resource path="res://game_save.gd" type="Script" id=8]
+[ext_resource path="res://CustomText.gd" type="Script" id=9]
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
@@ -103,6 +104,7 @@ DiceFrame = NodePath("gerief/HSplitContainer/Control/Sprite")
 game_save_class = ExtResource( 8 )
 
 [node name="end_game" type="Control" parent="."]
+visible = false
 margin_right = 1006.0
 margin_bottom = 608.0
 
@@ -133,22 +135,13 @@ text = "HAHA LOSER"
 align = 1
 
 [node name="win" type="Control" parent="end_game"]
+visible = false
 show_behind_parent = true
 margin_left = 513.0
 margin_top = 298.0
 margin_right = 513.0
 margin_bottom = 298.0
 mouse_filter = 1
-
-[node name="win_game" type="Label" parent="end_game/win"]
-visible = false
-margin_left = -117.0
-margin_top = -110.0
-margin_right = 123.0
-margin_bottom = -50.0
-custom_fonts/font = SubResource( 2 )
-text = "FEEST"
-align = 1
 
 [node name="win_colour" type="ColorRect" parent="end_game/win"]
 margin_left = -520.0
@@ -163,17 +156,28 @@ position = Vector2( 0, -44 )
 scale = Vector2( 1.68519, 1.68519 )
 texture = ExtResource( 7 )
 
+[node name="win_game" type="Label" parent="end_game/win"]
+visible = false
+margin_left = -117.0
+margin_top = -110.0
+margin_right = 123.0
+margin_bottom = -50.0
+custom_fonts/font = SubResource( 2 )
+text = "FEEST"
+align = 1
+
 [node name="motd" type="RichTextLabel" parent="end_game/win"]
-margin_left = 115.0
-margin_top = -240.0
-margin_right = 489.0
-margin_bottom = -123.0
+margin_left = 99.0
+margin_top = -51.0
+margin_right = 486.0
+margin_bottom = 66.0
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
-bbcode_text = "Some quote
--Some guy"
-text = "Some quote
--Some guy"
+bbcode_text = "\"Time is money the farmer said, and he sold his watch\"
+-Farmer Fons"
+text = "\"Time is money the farmer said, and he sold his watch\"
+-Farmer Fons"
+script = ExtResource( 9 )
 
 [node name="sus" type="Control" parent="end_game"]
 visible = false
@@ -206,7 +210,7 @@ margin_right = 384.0
 margin_bottom = 578.0
 rect_min_size = Vector2( 360, 0 )
 custom_fonts/font = ExtResource( 5 )
-text = "Nog ne keer"
+text = "Scam More People"
 clip_text = true
 
 [node name="high_score_label" type="Label" parent="end_game"]
@@ -281,4 +285,6 @@ text = "3 s"
 custom_effects = [ null, null, null, null, null ]
 script = ExtResource( 4 )
 
+[connection signal="mouse_entered" from="end_game/win/motd" to="end_game/win/motd" method="_change_text"]
+[connection signal="visibility_changed" from="end_game/win/motd" to="end_game/win/motd" method="_change_text"]
 [connection signal="pressed" from="end_game/restart" to="." method="_on_restart_pressed"]

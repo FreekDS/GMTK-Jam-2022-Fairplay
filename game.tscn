@@ -63,6 +63,9 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.5683
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0615, -20.6996, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
+__meta__ = {
+"_vol_id": 25
+}
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0615, -20.6996, 0 )
