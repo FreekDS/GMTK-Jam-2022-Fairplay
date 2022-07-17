@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://SUS Meter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game UI.gd" type="Script" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://img/win.png" type="Texture" id=7]
 [ext_resource path="res://game_save.gd" type="Script" id=8]
 [ext_resource path="res://CustomText.gd" type="Script" id=9]
-[ext_resource path="res://img/knife.png" type="Texture" id=10]
+[ext_resource path="res://img/centejes.png" type="Texture" id=10]
 [ext_resource path="res://img/failSUS.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=2]
@@ -19,6 +19,13 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 25
+extra_spacing_top = 3
+extra_spacing_char = 4
+extra_spacing_space = -4
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 20
 extra_spacing_top = 3
 extra_spacing_char = 4
 extra_spacing_space = -4
@@ -138,7 +145,7 @@ mouse_filter = 1
 color = Color( 0.898039, 0.0235294, 0.0235294, 0.278431 )
 
 [node name="Win2" type="Sprite" parent="end_game/lose"]
-position = Vector2( 2.99999, 3.99999 )
+position = Vector2( 307, 137 )
 scale = Vector2( 1.04299, 1.01009 )
 texture = ExtResource( 10 )
 
@@ -258,20 +265,21 @@ margin_top = 20.0
 rect_min_size = Vector2( 0, 90 )
 
 [node name="HSplitContainer" type="HSplitContainer" parent="gerief"]
-margin_left = 424.0
+margin_left = 399.0
 margin_top = 25.0
-margin_right = 600.0
+margin_right = 625.0
 margin_bottom = 65.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="gerief/HSplitContainer"]
-margin_right = 100.0
+margin_right = 150.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 100, 40 )
+rect_min_size = Vector2( 150, 40 )
+custom_fonts/normal_font = SubResource( 6 )
 text = "I will throw"
 
 [node name="Control" type="Control" parent="gerief/HSplitContainer"]
-margin_left = 112.0
-margin_right = 176.0
+margin_left = 162.0
+margin_right = 226.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 64, 0 )
 
@@ -313,6 +321,5 @@ material = SubResource( 5 )
 margin_right = 1068.0
 margin_bottom = 637.0
 
-[connection signal="mouse_entered" from="end_game/win/motd" to="end_game/win/motd" method="_change_text"]
 [connection signal="visibility_changed" from="end_game/win/motd" to="end_game/win/motd" method="_change_text"]
 [connection signal="pressed" from="end_game/restart" to="." method="_on_restart_pressed"]
