@@ -18,8 +18,31 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 14.0
+margin_top = 5.0
+margin_right = 814.0
+margin_bottom = 125.0
 rect_min_size = Vector2( 800, 120 )
 custom_fonts/normal_font = SubResource( 1 )
-text = "Ik haat dobbelstenen"
+text = "SUS"
+
+[node name="PlayButton" type="Button" parent="."]
+margin_left = 27.0
+margin_top = 480.0
+margin_right = 234.0
+margin_bottom = 546.0
+text = "play"
+
+[node name="Credits" type="Button" parent="."]
+margin_left = 237.0
+margin_top = 480.0
+margin_right = 424.0
+margin_bottom = 546.0
+text = "Credits"
+
+[node name="ControlsButton" type="Button" parent="."]
+margin_left = 427.0
+margin_top = 480.0
+margin_right = 616.0
+margin_bottom = 546.0
+text = "Controls"

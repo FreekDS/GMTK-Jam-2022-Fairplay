@@ -28,7 +28,7 @@ _global_script_class_icons={
 
 config/name="GMTK 2022"
 run/main_scene="res://game.tscn"
-config/icon="res://icon.png"
+config/icon="res://img/sus1.png"
 
 [autoload]
 
