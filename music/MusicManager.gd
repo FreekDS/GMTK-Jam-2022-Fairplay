@@ -10,8 +10,6 @@ func _ready():
 	
 	for child in $Background.get_children():
 		child.connect("finished", self, "play_random_background")
-	
-
 
 func play_sus_end():
 	stop_all()
@@ -35,5 +33,6 @@ func play_random_background():
 		return
 	stop_all()
 	var i = randi() % $Background.get_child_count()
+	print("HHHH" + str(i))
 	$Background.get_child(i).play()
  
