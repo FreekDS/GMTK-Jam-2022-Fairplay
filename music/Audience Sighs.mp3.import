@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Audience Sighs.mp3-d34ad1daed1a59f686aa9e8191213808.mp3str"
+
+[deps]
+
+source_file="res://music/Audience Sighs.mp3"
+dest_files=[ "res://.import/Audience Sighs.mp3-d34ad1daed1a59f686aa9e8191213808.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

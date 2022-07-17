@@ -69,6 +69,7 @@ func lose_game():
 	end()
 	$end_game/lose.visible=true
 	$end_game/restart.disabled=false
+	$end_game/lose/LoseSound.play()
 	game_save.current_streak=0
 	set_score_labels()
 	save_save()
@@ -77,6 +78,7 @@ func win_game():
 	end()
 	$end_game/win.visible=true
 	$end_game/restart.disabled=false
+	$end_game/win/WinSound.play()
 	game_save.current_streak+=1
 	if(game_save.current_streak>game_save.highest_streak):
 		game_save.highest_streak=game_save.current_streak
@@ -88,6 +90,7 @@ func sus_game():
 	end()
 	$end_game/sus.visible=true
 	$end_game/restart.disabled=false
+	$end_game/sus/SusSound.play()
 	game_save.current_streak=0
 	set_score_labels()
 	save_save()

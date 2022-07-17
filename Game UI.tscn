@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://SUS Meter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game UI.gd" type="Script" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://menu/deknop_style.tres" type="StyleBox" id=12]
 [ext_resource path="res://menu/hoever.tres" type="StyleBox" id=13]
 [ext_resource path="res://menu/klieken.tres" type="StyleBox" id=14]
+[ext_resource path="res://music/YOU NEED TO LEAVE Sound Effect.mp3" type="AudioStream" id=15]
+[ext_resource path="res://music/Yes - Sound effect.mp3" type="AudioStream" id=16]
+[ext_resource path="res://music/Audience Sighs.mp3" type="AudioStream" id=17]
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
@@ -170,6 +173,10 @@ custom_fonts/font = SubResource( 2 )
 text = "Failure"
 align = 1
 
+[node name="LoseSound" type="AudioStreamPlayer" parent="end_game/lose"]
+stream = ExtResource( 16 )
+volume_db = -25.0
+
 [node name="win" type="Control" parent="end_game"]
 visible = false
 show_behind_parent = true
@@ -215,6 +222,10 @@ text = "\"Time is money the farmer said, and he sold his watch\"
 -Farmer Fons"
 script = ExtResource( 9 )
 
+[node name="WinSound" type="AudioStreamPlayer" parent="end_game/win"]
+stream = ExtResource( 17 )
+volume_db = -30.0
+
 [node name="sus" type="Control" parent="end_game"]
 visible = false
 margin_left = 494.0
@@ -243,6 +254,10 @@ margin_bottom = -51.0
 custom_fonts/font = SubResource( 2 )
 text = "SUS?"
 align = 1
+
+[node name="SusSound" type="AudioStreamPlayer" parent="end_game/sus"]
+stream = ExtResource( 15 )
+volume_db = -20.0
 
 [node name="restart" type="Button" parent="end_game"]
 margin_left = 24.0
