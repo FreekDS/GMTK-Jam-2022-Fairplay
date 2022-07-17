@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://font/double_pixel-7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://img/handjeintro.png" type="Texture" id=2]
@@ -8,10 +8,26 @@
 [ext_resource path="res://img/italian.png" type="Texture" id=6]
 [ext_resource path="res://img/wereld.png" type="Texture" id=7]
 [ext_resource path="res://img/dices.png" type="Texture" id=8]
+[ext_resource path="res://menu/deknop_style.tres" type="StyleBox" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
 outline_size = 1
+extra_spacing_top = 3
+extra_spacing_char = 4
+extra_spacing_space = -4
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+extra_spacing_top = 3
+extra_spacing_char = 4
+extra_spacing_space = -4
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+outline_color = Color( 0.34902, 0.34902, 0.34902, 1 )
 extra_spacing_top = 3
 extra_spacing_char = 4
 extra_spacing_space = -4
@@ -44,6 +60,9 @@ margin_left = 27.0
 margin_top = 480.0
 margin_right = 227.0
 margin_bottom = 555.0
+custom_colors/font_color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = ExtResource( 9 )
 text = "Play"
 
 [node name="Credits" type="Button" parent="MainMenu"]
@@ -51,6 +70,9 @@ margin_left = 237.0
 margin_top = 480.0
 margin_right = 437.0
 margin_bottom = 555.0
+custom_colors/font_color = Color( 0.0509804, 0.0470588, 0.0470588, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/normal = ExtResource( 9 )
 text = "Credits"
 
 [node name="Handjeintro" type="Sprite" parent="MainMenu"]
