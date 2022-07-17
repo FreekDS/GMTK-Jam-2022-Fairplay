@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://font/double_pixel-7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://img/handjeintro.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://img/sus1.png" type="Texture" id=5]
 [ext_resource path="res://img/italian.png" type="Texture" id=6]
 [ext_resource path="res://img/wereld.png" type="Texture" id=7]
+[ext_resource path="res://img/dices.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -36,20 +37,20 @@ margin_right = 814.0
 margin_bottom = 125.0
 rect_min_size = Vector2( 800, 120 )
 custom_fonts/normal_font = SubResource( 1 )
-text = "SUSsssssss"
+text = "Minecraft"
 
 [node name="PlayButton" type="Button" parent="MainMenu"]
 margin_left = 27.0
 margin_top = 480.0
-margin_right = 234.0
-margin_bottom = 546.0
+margin_right = 227.0
+margin_bottom = 555.0
 text = "Play"
 
 [node name="Credits" type="Button" parent="MainMenu"]
 margin_left = 237.0
 margin_top = 480.0
-margin_right = 424.0
-margin_bottom = 546.0
+margin_right = 437.0
+margin_bottom = 555.0
 text = "Credits"
 
 [node name="Handjeintro" type="Sprite" parent="MainMenu"]
@@ -62,6 +63,12 @@ position = Vector2( 859.835, 323.426 )
 rotation = 3.14556
 scale = Vector2( -1, 1 )
 texture = ExtResource( 2 )
+
+[node name="Dices" type="Sprite" parent="MainMenu"]
+position = Vector2( 729.742, 504.373 )
+rotation = 0.000511064
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
 
 [node name="Credits" type="Control" parent="."]
 visible = false
