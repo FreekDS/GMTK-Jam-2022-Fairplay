@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/Table.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Hand.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://environments/new_environment.tres" type="Environment" id=10]
 [ext_resource path="res://environments/met_dofke.tres" type="Environment" id=11]
 [ext_resource path="res://trail.tscn" type="PackedScene" id=12]
+[ext_resource path="res://particleFog.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 500, 2, 500 )
@@ -23,6 +24,50 @@ uv1_scale = Vector3( 50, 50, 50 )
 
 [sub_resource type="ConcavePolygonShape" id=3]
 data = PoolVector3Array( -50, 1, 50, 50, 1, 50, -50, -1, 50, 50, 1, 50, 50, -1, 50, -50, -1, 50, 50, 1, -50, -50, 1, -50, 50, -1, -50, -50, 1, -50, -50, -1, -50, 50, -1, -50, 50, 1, 50, 50, 1, -50, 50, -1, 50, 50, 1, -50, 50, -1, -50, 50, -1, 50, -50, 1, -50, -50, 1, 50, -50, -1, -50, -50, 1, 50, -50, -1, 50, -50, -1, -50, 50, 1, 50, -50, 1, 50, 50, 1, -50, -50, 1, 50, -50, 1, -50, 50, 1, -50, -50, -1, 50, 50, -1, 50, -50, -1, -50, 50, -1, 50, 50, -1, -50, -50, -1, -50 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "Light"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.5, 0.7 ]
+}
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="Curve" id=7]
+max_value = 4.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 4 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+lifetime_randomness = 0.1
+emission_shape = 2
+emission_box_extents = Vector3( 80, 20, 1 )
+spread = 100.0
+gravity = Vector3( 0, 1, 0 )
+scale = 2.0
+scale_curve = SubResource( 4 )
+color = Color( 0, 0, 0, 1 )
+color_ramp = SubResource( 6 )
+anim_speed = 1.0
+anim_offset = 1.0
+anim_offset_random = 1.0
 
 [node name="Game" type="Spatial"]
 script = ExtResource( 3 )
@@ -59,7 +104,7 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.5683
 [node name="Floor" type="StaticBody" parent="." groups=["ground", "out"]]
 
 [node name="MeshInstance" type="MeshInstance" parent="Floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0615, -20.6996, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0615, -20.6996, -21.904 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 __meta__ = {
@@ -72,8 +117,12 @@ shape = SubResource( 3 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( -0.906372, -0.0204898, 0.421983, 0.42248, -0.0419794, 0.9054, -0.000836845, 0.998908, 0.0467055, 0, 26.7864, 0 )
-light_energy = 1.5
+light_energy = 1.20941
 shadow_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DirectionalLight"]
+autoplay = "Light"
+anims/Light = SubResource( 9 )
 
 [node name="DiceCamEffect" parent="." instance=ExtResource( 7 )]
 
@@ -83,6 +132,51 @@ environment = ExtResource( 10 )
 [node name="trail" parent="." instance=ExtResource( 12 )]
 visible = false
 
+[node name="FOG" type="Spatial" parent="."]
+
+[node name="Spatial" parent="FOG" instance=ExtResource( 13 )]
+transform = Transform( -0.0433579, 0, -0.99906, 0, 1, 0, 0.99906, 0, -0.0433579, -76.5453, -3.83818, 51.252 )
+
+[node name="FOG" parent="FOG/Spatial" index="0"]
+transform = Transform( 0.0289335, 0, -0.999581, 0, 1, 0, 0.999581, 0, 0.0289335, -83.3444, 0, -38.6575 )
+amount = 30000
+visibility_aabb = AABB( -79.7739, -23.8829, -4, 159.548, 47.7659, 8 )
+process_material = SubResource( 8 )
+
+[node name="Spatial2" parent="FOG" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01323, -4.78519, 27.6568 )
+
+[node name="FOG" parent="FOG/Spatial2" index="0"]
+transform = Transform( 0.0289335, 0, -0.999581, 0, 1, 0, 0.999581, 0, 0.0289335, -83.3444, 0, -38.6575 )
+amount = 30000
+visibility_aabb = AABB( -80.6255, -19.1195, -4, 161.251, 38.239, 8 )
+process_material = SubResource( 8 )
+
+[node name="Spatial3" parent="FOG" instance=ExtResource( 13 )]
+transform = Transform( 0.0991639, 0.0262293, 0.994725, -0.00260189, 0.999656, -0.0260999, -0.995068, 0, 0.0991981, 17.5468, -8.10327, -20.4273 )
+
+[node name="FOG" parent="FOG/Spatial3" index="0"]
+transform = Transform( 0.0289335, -2.32831e-10, -0.999581, -5.57155e-09, 1, 1.15838e-10, 0.999581, 0, 0.0289335, -55.0739, 2.38419e-07, -41.4758 )
+amount = 30000
+visibility_aabb = AABB( -79.0589, -16.6434, -4, 158.118, 33.2868, 8 )
+local_coords = false
+draw_order = 2
+process_material = SubResource( 8 )
+
+[node name="Spatial4" parent="FOG" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 95.4239, -4.78519, 27.6568 )
+
+[node name="FOG" parent="FOG/Spatial4" index="0"]
+transform = Transform( 0.0289335, 0, -0.999581, 0, 1, 0, 0.999581, 0, 0.0289335, -83.3444, 0, -38.6575 )
+amount = 30000
+visibility_aabb = AABB( -79.2899, -20.7047, -4, 158.58, 41.4094, 8 )
+process_material = SubResource( 8 )
+
 [connection signal="foefelen" from="Dice" to="." method="_on_Dice_foefelen"]
 [connection signal="thrown" from="Hand" to="StartCam" method="_on_Hand_thrown"]
 [connection signal="thrown" from="Hand" to="Dice" method="_on_Hand_thrown"]
+
+[editable path="FOG/Spatial"]
+[editable path="FOG/Spatial2"]
+[editable path="FOG/Spatial3"]
+[editable path="FOG/Spatial4"]

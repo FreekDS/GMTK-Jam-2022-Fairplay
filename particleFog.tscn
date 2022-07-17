@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://img/fog.png" type="Texture" id=1]
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="Curve" id=7]
+max_value = 4.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 4 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+lifetime_randomness = 0.1
+emission_shape = 2
+emission_box_extents = Vector3( 20, 4, 1 )
+spread = 100.0
+gravity = Vector3( 0, 1, 0 )
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 6 )
+anim_speed = 1.0
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=9]
+flags_transparent = true
+flags_vertex_lighting = true
+flags_do_not_receive_shadows = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 2
+params_billboard_mode = 3
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=10]
+material = SubResource( 9 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="FOG" type="Particles" parent="."]
+amount = 20000
+speed_scale = 0.5
+visibility_aabb = AABB( -6.68813, -4, -4, 13.3763, 8, 8 )
+process_material = SubResource( 8 )
+draw_pass_1 = SubResource( 10 )

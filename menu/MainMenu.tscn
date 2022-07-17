@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://font/double_pixel-7.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://img/handjeintro.png" type="Texture" id=2]
+[ext_resource path="res://menu/MainMenu.gd" type="Script" id=3]
+[ext_resource path="res://font/dynamic_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://img/sus1.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -11,11 +15,11 @@ extra_spacing_space = -4
 font_data = ExtResource( 1 )
 
 [node name="ROOT" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
 
 [node name="MainMenu" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -29,14 +33,14 @@ margin_right = 814.0
 margin_bottom = 125.0
 rect_min_size = Vector2( 800, 120 )
 custom_fonts/normal_font = SubResource( 1 )
-text = "SUS"
+text = "SUSsssssss"
 
 [node name="PlayButton" type="Button" parent="MainMenu"]
 margin_left = 27.0
 margin_top = 480.0
 margin_right = 234.0
 margin_bottom = 546.0
-text = "play"
+text = "Play"
 
 [node name="Credits" type="Button" parent="MainMenu"]
 margin_left = 237.0
@@ -45,6 +49,38 @@ margin_right = 424.0
 margin_bottom = 546.0
 text = "Credits"
 
+[node name="Handjeintro" type="Sprite" parent="MainMenu"]
+position = Vector2( 865, 154 )
+texture = ExtResource( 2 )
+
 [node name="Credits" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Credits"]
+margin_left = 85.0
+margin_top = 47.0
+margin_right = 957.0
+margin_bottom = 540.0
+custom_fonts/normal_font = ExtResource( 4 )
+text = "
+
+
+Assets:
+	"
+
+[node name="BackButton" type="Button" parent="Credits"]
+margin_left = 48.0
+margin_top = 28.0
+margin_right = 187.0
+margin_bottom = 61.0
+text = "Back"
+
+[node name="Sus1" type="Sprite" parent="Credits"]
+position = Vector2( 937, 486 )
+texture = ExtResource( 5 )
+
+[connection signal="pressed" from="MainMenu/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="MainMenu/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="Credits/BackButton" to="." method="_on_BackButton_pressed"]
