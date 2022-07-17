@@ -29,8 +29,8 @@ func _ready():
 	boing_boing=dice_bounce_base
 
 
-const max_throw_power = 950
-const min_throw_power = 300
+const max_throw_power = 850
+const min_throw_power = 320
 const throw_height = 100
 const torque_multiplier = 15
 

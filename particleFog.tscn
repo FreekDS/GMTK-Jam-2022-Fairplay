@@ -45,6 +45,7 @@ material = SubResource( 9 )
 [node name="Spatial" type="Spatial"]
 
 [node name="FOG" type="Particles" parent="."]
+emitting = false
 amount = 20000
 speed_scale = 0.5
 visibility_aabb = AABB( -6.68813, -4, -4, 13.3763, 8, 8 )
