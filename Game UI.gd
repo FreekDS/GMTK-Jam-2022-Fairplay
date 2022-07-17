@@ -54,7 +54,7 @@ func increase_sus(slowmotion):
 
 
 func start_vizual_end_timer(seconds:int):
-	$timer_label.visible=true
+#	$timer_label.visible=true
 	$timer_label.start_timer(seconds)
 	
 func end():
@@ -62,7 +62,7 @@ func end():
 	$end_game.visible=true
 	$gerief.visible=false
 	$"SUS Meter".visible=false
-	$timer_label.visible=false
+#	$timer_label.visible=false
 	
 	
 func lose_game():

@@ -65,5 +65,5 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/intended_usage/framebuffer_allocation.mobile=2
-environment/default_clear_color=Color( 0.8, 0.992157, 1, 1 )
+environment/default_clear_color=Color( 0.54902, 0.635294, 0.392157, 1 )
 environment/default_environment="res://environments/new_environment.tres"
