@@ -116,6 +116,7 @@ shape = SubResource( 10 )
 transform = Transform( -0.906372, -0.0204898, 0.421983, 0.42248, -0.0419794, 0.9054, -0.000836845, 0.998908, 0.0467055, 0, 26.7864, 0 )
 light_energy = 1.5
 shadow_enabled = true
+directional_shadow_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DirectionalLight"]
 autoplay = "Light"

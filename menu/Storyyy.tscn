@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Panel.gd" type="Script" id=1]
+[ext_resource path="res://menu/Storyyy.gd" type="Script" id=2]
+[ext_resource path="res://font/dynamic_font.tres" type="DynamicFont" id=3]
+
+[node name="Storyyy" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 767.0
+margin_top = 550.0
+margin_right = 1167.0
+margin_bottom = 610.0
+rect_min_size = Vector2( 400, 60 )
+custom_fonts/normal_font = ExtResource( 3 )
+text = "Click to continue"
+
+[node name="Panel1" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+text = "On a certain day...
+The fair arrived in town
+Opportunities for fun, amusement, good food and ...
+Scammers"
+
+[node name="panel" type="RichTextLabel" parent="Panel1"]
+margin_left = 212.0
+margin_top = 200.0
+margin_right = 812.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 600, 200 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+
+[node name="Tween" type="Tween" parent="Panel1"]
+
+[node name="Panel2" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+text = "Manipulate your dice by clicking and dragging the mouse. 
+Slow down time with E.
+
+Avoid being detected by the public!"
+
+[node name="panel" type="RichTextLabel" parent="Panel2"]
+margin_left = 212.0
+margin_top = 200.0
+margin_right = 812.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 600, 200 )
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "test
+"
+text = "test
+"
+scroll_active = false
+
+[node name="Tween" type="Tween" parent="Panel2"]

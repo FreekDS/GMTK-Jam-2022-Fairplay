@@ -13,7 +13,7 @@ func _on_BackButton_pressed():
 
 
 func _on_PlayButton_pressed():
-	get_tree().change_scene("res://game.tscn")
+	get_tree().change_scene("res://menu/Storyyy.tscn")
 
 
 func _on_italian_pressed():
