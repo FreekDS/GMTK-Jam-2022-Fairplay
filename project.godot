@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "GLOBALS",
 "language": "GDScript",
 "path": "res://scripts/GlobalParameters.gd"
+}, {
+"base": "Node",
+"class": "Music",
+"language": "GDScript",
+"path": "res://music/MusicManager.gd"
 } ]
 _global_script_class_icons={
-"GLOBALS": ""
+"GLOBALS": "",
+"Music": ""
 }
 
 [application]

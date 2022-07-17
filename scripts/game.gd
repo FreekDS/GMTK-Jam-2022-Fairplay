@@ -18,11 +18,14 @@ var second_bounce_leftover_seconds=3
 var globals = preload("res://GAME_GLOBALS.tres") as GLOBALS
 
 
+
+
 func _ready():
 	add_child(stop_game_timer)
 	dice.connect("slow_motion_state_changed",self,"change_to_slowmotion")
 	dice.connect("second_bounce_hit",self,"stop_game_after_time")
 	game_ui.connect("restart_game",self,"restart")
+	game_ui.connect("max_sus", self, "stop_game", [true])
 	stop_game_timer.connect("timeout",self,"stop_game")
 	randomize()
 
@@ -51,8 +54,17 @@ func stop_game_after_time():
 	stop_game_timer.one_shot = true
 	stop_game_timer.start()
 
-func stop_game():
+var ended = false
+func stop_game(sus = false):
+	if ended:
+		return
+	ended = true
 	dice.disable()
+	
+	if sus:
+		game_ui.sus_game()
+		return
+	
 	print(dice.current_top_number)
 	if(dice.current_top_number==game_ui.selection):
 		print("goed")

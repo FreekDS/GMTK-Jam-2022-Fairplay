@@ -14,6 +14,7 @@ onready var SusMeter = $"SUS Meter"
 export(Script) var game_save_class
 
 var game_save = null
+var was_sus = false
 
 # Filled by globals
 var SUS_increment
@@ -28,7 +29,6 @@ func _ready():
 
 func handle_max_sus():
 	emit_signal("max_sus")
-	# TODO: den thibaut gaat een schoon max sus scherm maken als hem klaar is :o
 		
 func start_select_random_dice_face():
 	if not selected:
@@ -82,13 +82,32 @@ func win_game():
 		game_save.highest_streak=game_save.current_streak
 	set_score_labels()
 	save_save()
+
+
+func sus_game():
+	end()
+	$end_game/sus.visible=true
+	$end_game/restart.disabled=false
+	game_save.current_streak=0
+	set_score_labels()
+	save_save()
+	MusicManager.play_sus_end()
+	was_sus = true
+	
+
+
 func set_score_labels():
 	$end_game/high_score_label.text="high score: "+str(game_save.highest_streak)
 	$end_game/streak_label.text="Current streak: "+str(game_save.current_streak)
-	
+
+
 func _on_restart_pressed():
 	print("restarting game")
 	emit_signal("restart_game")
+	if was_sus:
+		was_sus = false
+		MusicManager.play_random_background()
+		
 
 func save_save():
 	var dir =Directory.new()

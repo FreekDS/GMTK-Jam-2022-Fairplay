@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sus_endgame.mp3-9054bd8f1404388a848218b62da88803.mp3str"
+
+[deps]
+
+source_file="res://music/sus_endgame.mp3"
+dest_files=[ "res://.import/sus_endgame.mp3-9054bd8f1404388a848218b62da88803.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

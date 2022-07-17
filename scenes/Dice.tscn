@@ -57,6 +57,7 @@ albedo_color = Color( 0.996078, 1, 0.992157, 1 )
 
 [node name="Dice" type="RigidBody" groups=["dice"]]
 transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0 )
+gravity_scale = 0.8
 contacts_reported = 10
 contact_monitor = true
 axis_lock_angular_y = true

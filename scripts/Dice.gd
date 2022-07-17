@@ -128,7 +128,8 @@ func _on_Dice_body_entered(body):
 		if hits == 0:
 			self.add_force(Vector3.UP * boing_boing, Vector3.ZERO)
 		else:
-			emit_signal("second_bounce_hit")
+			if enabled:
+				emit_signal("second_bounce_hit")
 		hits += 1
 
 	

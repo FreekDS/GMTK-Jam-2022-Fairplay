@@ -1,10 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://music/wesley.mp3" type="AudioStream" id=1]
+[ext_resource path="res://music/MusicManager.gd" type="Script" id=2]
+[ext_resource path="res://music/sus_endgame.mp3" type="AudioStream" id=3]
 
 [node name="Node" type="Node"]
+script = ExtResource( 2 )
 
-[node name="Music1" type="AudioStreamPlayer" parent="."]
+[node name="Background" type="Node" parent="."]
+
+[node name="Music1" type="AudioStreamPlayer" parent="Background"]
 stream = ExtResource( 1 )
 volume_db = -25.0
-autoplay = true
+
+[node name="SusEnd" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
