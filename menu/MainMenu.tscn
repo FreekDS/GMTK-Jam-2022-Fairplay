@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://font/double_pixel-7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://img/handjeintro.png" type="Texture" id=2]
 [ext_resource path="res://menu/MainMenu.gd" type="Script" id=3]
 [ext_resource path="res://font/dynamic_font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://img/sus1.png" type="Texture" id=5]
+[ext_resource path="res://img/italian.png" type="Texture" id=6]
+[ext_resource path="res://img/wereld.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -22,6 +24,7 @@ script = ExtResource( 3 )
 [node name="MainMenu" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_rotation = -0.0292818
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -53,6 +56,13 @@ text = "Credits"
 position = Vector2( 865, 154 )
 texture = ExtResource( 2 )
 
+[node name="Handjeintro_it" type="Sprite" parent="MainMenu"]
+visible = false
+position = Vector2( 859.835, 323.426 )
+rotation = 3.14556
+scale = Vector2( -1, 1 )
+texture = ExtResource( 2 )
+
 [node name="Credits" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
@@ -81,6 +91,28 @@ text = "Back"
 position = Vector2( 937, 486 )
 texture = ExtResource( 5 )
 
+[node name="localisation" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="italian" type="TextureButton" parent="localisation"]
+margin_left = 978.0
+margin_top = 560.0
+margin_right = 1240.0
+margin_bottom = 816.0
+rect_scale = Vector2( 0.1, 0.1 )
+texture_normal = ExtResource( 6 )
+
+[node name="world" type="TextureButton" parent="localisation"]
+margin_left = 978.0
+margin_top = 520.0
+margin_right = 1235.0
+margin_bottom = 776.0
+rect_scale = Vector2( 0.1, 0.1 )
+texture_normal = ExtResource( 7 )
+
 [connection signal="pressed" from="MainMenu/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="MainMenu/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Credits/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="localisation/italian" to="." method="_on_italian_pressed"]
+[connection signal="pressed" from="localisation/world" to="." method="_on_world_pressed"]

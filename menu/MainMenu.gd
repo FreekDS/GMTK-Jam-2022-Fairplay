@@ -13,4 +13,15 @@ func _on_BackButton_pressed():
 
 
 func _on_PlayButton_pressed():
-	print("Play")
+	get_tree().change_scene("res://game.tscn")
+
+
+func _on_italian_pressed():
+	$MainMenu/Handjeintro.visible=false
+	$MainMenu/Handjeintro_it.visible=true
+	
+
+
+func _on_world_pressed():
+	$MainMenu/Handjeintro.visible=true
+	$MainMenu/Handjeintro_it.visible=false

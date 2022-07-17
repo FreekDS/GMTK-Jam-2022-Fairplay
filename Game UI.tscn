@@ -102,7 +102,7 @@ tracks/2/keys = {
 code = "shader_type canvas_item;
 
 void fragment() {
-	COLOR = textureLod(SCREEN_TEXTURE, SCREEN_UV, 1);
+	COLOR = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.5);
 }"
 
 [sub_resource type="ShaderMaterial" id=5]
