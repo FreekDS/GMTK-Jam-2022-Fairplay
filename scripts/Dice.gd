@@ -16,6 +16,8 @@ var dice_bounce_slowmotion_multiplier = 3
 
 var slow_motion_time
 
+var slowmo_active=false
+
 func _ready():
 	var g = preload("res://GAME_GLOBALS.tres") as GLOBALS
 	torque_power = g.dice_torque
@@ -89,12 +91,12 @@ func _input(event):
 			emit_signal("foefelen", slow_motion)
 			
 			add_torque(Vector3(dir.y, 0, -dir.x) * power);
-		if event.is_action_pressed("slowmo"):
+		if event.is_action_pressed("slowmo") and slowmo_active:
 			Engine.time_scale = slow_motion_time
 			slow_motion = true
 			boing_boing=dice_bounce_base*dice_bounce_slowmotion_multiplier
 			emit_signal("slow_motion_state_changed", true)
-		if event.is_action_released("slowmo"):
+		if event.is_action_released("slowmo") and slowmo_active:
 			Engine.time_scale = 1
 			slow_motion = false
 			boing_boing=dice_bounce_base
@@ -112,6 +114,7 @@ func _on_Hand_thrown():
 	
 	add_force(Vector3(-throw_power, throw_height, 0), Vector3(0,0,0))
 	add_torque(torque * torque_multiplier)
+	slowmo_active=true
 	
 func disable():
 	self.set_physics_process(false)

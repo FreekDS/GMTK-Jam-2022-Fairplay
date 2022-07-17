@@ -60,6 +60,7 @@ func stop_game(sus = false):
 		return
 	ended = true
 	dice.disable()
+	dice.slowmo_active=false
 	
 	if sus:
 		game_ui.sus_game()
