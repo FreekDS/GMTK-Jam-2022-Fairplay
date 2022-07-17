@@ -99,6 +99,13 @@ func sus_game():
 func set_score_labels():
 	$end_game/high_score_label.text="high score: "+str(game_save.highest_streak)
 	$end_game/streak_label.text="Current streak: "+str(game_save.current_streak)
+	
+func enable_blur():
+	$blur.visible=true
+	
+
+func disable_blur():
+	$blur.visible=false
 
 
 func _on_restart_pressed():

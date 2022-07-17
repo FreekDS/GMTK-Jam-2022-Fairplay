@@ -40,11 +40,14 @@ func change_to_slowmotion(is_slowmotion:bool):
 	if is_slowmotion:
 #		print("Going to slow motion mode")
 		dice_cam.fov = globals.slowmotion_fov
-		world_env.environment = dof_env
+		game_ui.enable_blur()
+		
+#		world_env.environment = dof_env
 	else :
 #		print("Going to normal motion mode")
 		dice_cam.fov = globals.normal_fov
-		world_env.environment = normal_env
+		game_ui.disable_blur()
+#		world_env.environment = normal_env
 		
 	
 func stop_game_after_time():
