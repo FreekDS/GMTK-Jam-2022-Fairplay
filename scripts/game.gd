@@ -4,9 +4,6 @@ var thrown = false
 
 var stop_game_timer = Timer.new()
 
-export(Environment) var normal_env = null
-export(Environment) var dof_env = null
-
 onready var dice=$Dice
 onready var table=$Table
 onready var dice_cam=$DiceCam
