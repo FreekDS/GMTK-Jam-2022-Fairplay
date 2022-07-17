@@ -6,6 +6,7 @@ var dont_get_me_started = false
 
 
 func _ready():
+	randomize()
 	play_random_background()
 	
 	for child in $Background.get_children():
