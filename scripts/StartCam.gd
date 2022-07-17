@@ -4,7 +4,7 @@ extends Camera
 var tween = Tween.new()
 
 export(NodePath) onready var DiceCam = get_node(DiceCam) as Camera
-export(NodePath) onready var DiceCamEffect = get_node(DiceCamEffect) as Control
+#export(NodePath) onready var DiceCamEffect = get_node(DiceCamEffect) as Control
 export(NodePath) onready  var Trail = get_node(Trail) as Node2D
 
 var tween_duration
@@ -26,5 +26,5 @@ func change_camera(_s, _g):
 
 func _on_Hand_thrown():
 	move_to_dicecam()
-	DiceCamEffect.visible = false
+#	DiceCamEffect.visible = false
 	Trail.visible = true
