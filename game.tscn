@@ -137,27 +137,33 @@ visible = false
 
 [node name="Spatial" parent="FOG" instance=ExtResource( 13 )]
 transform = Transform( -0.0433579, 0, -0.99906, 0, 1, 0, 0.99906, 0, -0.0433579, -76.5453, -3.83818, 51.252 )
+visible = false
 
 [node name="FOG" parent="FOG/Spatial" index="0"]
 transform = Transform( 0.0289335, 0, -0.999581, 0, 1, 0, 0.999581, 0, 0.0289335, -83.3444, 0, -38.6575 )
+visible = false
 amount = 30000
 visibility_aabb = AABB( -79.7739, -23.8829, -4, 159.548, 47.7659, 8 )
 process_material = SubResource( 8 )
 
 [node name="Spatial2" parent="FOG" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01323, -4.78519, 27.6568 )
+visible = false
 
 [node name="FOG" parent="FOG/Spatial2" index="0"]
 transform = Transform( 0.0289335, 0, -0.999581, 0, 1, 0, 0.999581, 0, 0.0289335, -83.3444, 0, -38.6575 )
+visible = false
 amount = 30000
 visibility_aabb = AABB( -80.6255, -19.1195, -4, 161.251, 38.239, 8 )
 process_material = SubResource( 8 )
 
 [node name="Spatial3" parent="FOG" instance=ExtResource( 13 )]
 transform = Transform( 0.0991639, 0.0262293, 0.994725, -0.00260189, 0.999656, -0.0260999, -0.995068, 0, 0.0991981, 17.5468, -8.10327, -20.4273 )
+visible = false
 
 [node name="FOG" parent="FOG/Spatial3" index="0"]
 transform = Transform( 0.0289335, -2.32831e-10, -0.999581, -5.57155e-09, 1, 1.15838e-10, 0.999581, 0, 0.0289335, -55.0739, 2.38419e-07, -41.4758 )
+visible = false
 amount = 30000
 visibility_aabb = AABB( -79.0589, -16.6434, -4, 158.118, 33.2868, 8 )
 local_coords = false
@@ -166,9 +172,11 @@ process_material = SubResource( 8 )
 
 [node name="Spatial4" parent="FOG" instance=ExtResource( 13 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 95.4239, -4.78519, 27.6568 )
+visible = false
 
 [node name="FOG" parent="FOG/Spatial4" index="0"]
 transform = Transform( 0.0289335, 0, -0.999581, 0, 1, 0, 0.999581, 0, 0.0289335, -83.3444, 0, -38.6575 )
+visible = false
 amount = 30000
 visibility_aabb = AABB( -79.2899, -20.7047, -4, 158.58, 41.4094, 8 )
 process_material = SubResource( 8 )

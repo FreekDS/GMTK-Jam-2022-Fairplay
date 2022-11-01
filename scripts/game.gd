@@ -4,6 +4,11 @@ var thrown = false
 
 var stop_game_timer = Timer.new()
 
+var first_timeout=false
+var first_timeout_started=false
+
+var cheaty_mobile_bug_timeout= Timer.new()
+
 onready var dice=$Dice
 onready var table=$Table
 onready var dice_cam=$DiceCam
@@ -19,15 +24,24 @@ var globals = preload("res://GAME_GLOBALS.tres") as GLOBALS
 
 func _ready():
 	add_child(stop_game_timer)
+	add_child(cheaty_mobile_bug_timeout)
 	dice.connect("slow_motion_state_changed",self,"change_to_slowmotion")
 	dice.connect("second_bounce_hit",self,"stop_game_after_time")
 	game_ui.connect("restart_game",self,"restart")
 	game_ui.connect("max_sus", self, "stop_game", [true])
+	game_ui.connect("change_time_button",self,"handle_button_slowmo")
 	stop_game_timer.connect("timeout",self,"stop_game")
+	cheaty_mobile_bug_timeout.connect("timeout",self,"allow_game_start")
 	randomize()
 
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
+	#if on mobile you dont add a timout for the first click then the first click will actually already be the tap to continue the story, which somehow causes the dice to fly away
+	if not first_timeout and  not first_timeout_started:
+		cheaty_mobile_bug_timeout.wait_time = globals.mobile_cheat_bug_fix_time_sec
+		cheaty_mobile_bug_timeout.one_shot = true
+		cheaty_mobile_bug_timeout.start()
+		first_timeout_started=true
+	if Input.is_action_just_pressed("ui_accept") and first_timeout:
 		if not thrown:
 			$Hand.throw()
 			thrown = true
@@ -74,8 +88,17 @@ func stop_game(sus = false):
 		print("niet goed")
 		game_ui.lose_game()
 		
+func allow_game_start():
+	first_timeout=true
+		
 func restart():
 	get_tree().reload_current_scene() 
+
+func handle_button_slowmo(is_slow):
+	if is_slow:
+		$Dice.enter_slowmo()
+	else:
+		$Dice.exit_slowmo()
 	
 func _on_Dice_foefelen(in_slowmotion):
 	$Game_UI.increase_sus(in_slowmotion)

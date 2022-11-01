@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/centejes.png-29e59062b9fc816d75635d8208fdb468.s3tc.stex"
-path.etc2="res://.import/centejes.png-29e59062b9fc816d75635d8208fdb468.etc2.stex"
+path.s3tc="res://.import/hout.jpg-da63daff7dca0b2e99e7b9e7e6954a86.s3tc.stex"
+path.etc2="res://.import/hout.jpg-da63daff7dca0b2e99e7b9e7e6954a86.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://img/centejes.png"
-dest_files=[ "res://.import/centejes.png-29e59062b9fc816d75635d8208fdb468.s3tc.stex", "res://.import/centejes.png-29e59062b9fc816d75635d8208fdb468.etc2.stex" ]
+source_file="res://img/hout.jpg"
+dest_files=[ "res://.import/hout.jpg-da63daff7dca0b2e99e7b9e7e6954a86.s3tc.stex", "res://.import/hout.jpg-da63daff7dca0b2e99e7b9e7e6954a86.etc2.stex" ]
 
 [params]
 

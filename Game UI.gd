@@ -3,6 +3,7 @@ extends Control
 signal target_selected(target)
 signal max_sus
 signal restart_game()
+signal change_time_button(slowornot)
 
 var selection
 var selected = false
@@ -19,6 +20,9 @@ var was_sus = false
 # Filled by globals
 var SUS_increment
 var SUS_increment_slowmotion
+
+
+var is_slowed=false
 
 func _ready():
 	
@@ -61,6 +65,7 @@ func end():
 	load_save()
 	$end_game.visible=true
 	$gerief.visible=false
+	$time.visible=false
 	$"SUS Meter".visible=false
 #	$timer_label.visible=false
 	
@@ -135,3 +140,14 @@ func load_save():
 	print("loaded in save with:")
 	print("high score: "+str(game_save.highest_streak))
 	print("Current streak: "+str(game_save.current_streak))
+
+
+func _on_faster_button_pressed():
+	$time/faster_button.visible=false
+	$time/slower_button.visible=true
+	emit_signal("change_time_button", false)
+
+func _on_slower_button_pressed():
+	$time/faster_button.visible=true
+	$time/slower_button.visible=false
+	emit_signal("change_time_button", true)

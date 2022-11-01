@@ -50,7 +50,7 @@ var enabled=true
 var boing_boing=600
 
 var current_top_number=2
-
+var prev_pressed = false
 
 var hits = 0
 
@@ -81,7 +81,8 @@ func _input(event):
 	if(enabled):
 		if event.is_action_pressed("mouse_down"):
 			mouse_down_start = get_viewport().get_mouse_position()
-		if event.is_action_released("mouse_down"):
+			prev_pressed=true
+		if event.is_action_released("mouse_down") and prev_pressed:
 			var dir: Vector2 = get_viewport().get_mouse_position() - mouse_down_start
 			dir = dir.normalized()
 			var power = torque_power
@@ -92,17 +93,21 @@ func _input(event):
 			
 			add_torque(Vector3(dir.y, 0, -dir.x) * power);
 		if event.is_action_pressed("slowmo") and slowmo_active:
-			Engine.time_scale = slow_motion_time
-			slow_motion = true
-			boing_boing=dice_bounce_base*dice_bounce_slowmotion_multiplier
-			emit_signal("slow_motion_state_changed", true)
+			enter_slowmo()
 		if event.is_action_released("slowmo") and slowmo_active:
-			Engine.time_scale = 1
-			slow_motion = false
-			boing_boing=dice_bounce_base
-			emit_signal("slow_motion_state_changed", false)
+			exit_slowmo()
 
-
+func enter_slowmo():
+	Engine.time_scale = slow_motion_time
+	slow_motion = true
+	boing_boing=dice_bounce_base*dice_bounce_slowmotion_multiplier
+	emit_signal("slow_motion_state_changed", true) 
+	
+func exit_slowmo():
+	Engine.time_scale = 1
+	slow_motion = false
+	boing_boing=dice_bounce_base
+	emit_signal("slow_motion_state_changed", false)
 func _on_Hand_thrown():
 
 	var throw_power = rand_range(min_throw_power, max_throw_power)

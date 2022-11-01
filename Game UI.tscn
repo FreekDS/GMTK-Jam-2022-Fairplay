@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://SUS Meter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game UI.gd" type="Script" id=2]
@@ -130,9 +130,17 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=5]
 shader = SubResource( 4 )
 
+[sub_resource type="DynamicFont" id=8]
+size = 40
+extra_spacing_top = 3
+extra_spacing_char = 4
+extra_spacing_space = -4
+font_data = ExtResource( 6 )
+
 [node name="Game UI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 170, 182 )
 script = ExtResource( 2 )
 DiceFrame = NodePath("gerief/HSplitContainer/Control/Sprite")
 game_save_class = ExtResource( 8 )
@@ -353,5 +361,36 @@ material = SubResource( 5 )
 margin_right = 1068.0
 margin_bottom = 637.0
 
+[node name="time" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="slower_button" type="Button" parent="time"]
+margin_left = 19.0
+margin_top = 521.0
+margin_right = 179.0
+margin_bottom = 580.0
+custom_colors/font_color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
+custom_fonts/font = SubResource( 8 )
+custom_styles/hover = ExtResource( 13 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/normal = ExtResource( 12 )
+text = "Slower"
+
+[node name="faster_button" type="Button" parent="time"]
+visible = false
+margin_left = 19.0
+margin_top = 521.0
+margin_right = 179.0
+margin_bottom = 580.0
+custom_colors/font_color = Color( 0.00392157, 0.00392157, 0.00392157, 1 )
+custom_fonts/font = SubResource( 8 )
+custom_styles/hover = ExtResource( 13 )
+custom_styles/pressed = ExtResource( 14 )
+custom_styles/normal = ExtResource( 12 )
+text = "Faster"
+
 [connection signal="visibility_changed" from="end_game/win/motd" to="end_game/win/motd" method="_change_text"]
 [connection signal="pressed" from="end_game/restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="time/slower_button" to="." method="_on_slower_button_pressed"]
+[connection signal="pressed" from="time/faster_button" to="." method="_on_faster_button_pressed"]
